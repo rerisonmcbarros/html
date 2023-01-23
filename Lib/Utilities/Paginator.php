@@ -13,14 +13,17 @@ class Paginator{
 	private $numberPages;
 	private $numberLinks;
 
+	private $totalResults;
+
 
 	public function __construct($totalResults, $url, $limit){
 
+		$this->totalResults = $totalResults;
 		$this->url = $url;
 		$this->limit = $limit;
 		$this->currentPage = $this->getCurrentPage();
-		$this->offset = ($this->currentPage()*$this->limit)-$this->limit;
-		$this->numberPages = ceil($totalResults/$this->limit);
+		$this->offset = ($this->getcurrentPage()*$this->limit)-$this->limit;
+		$this->setNumberPages(); 
 	}
 
 	public function getLimit(){
@@ -35,7 +38,17 @@ class Paginator{
 
 	public function getCurrentPage(){
 
-		return filter_input_array(INPUT_GET, "page") ?? 1;
+		return filter_input(INPUT_GET, "page", FILTER_DEFAULT) ?? 1;
+	}
+
+	public function setNumberPages(){
+
+		if($this->totalResults <= $this->limit){
+
+			$this->numberPages = 1;
+		}
+
+		$this->numberPages = ceil($this->totalResults/$this->limit);
 	}
 
 	public function setNumberLinks($number){
@@ -52,10 +65,10 @@ class Paginator{
 
 		$template = '';
 
-		for ($i=$start; $i <= $end; $i++) { 
-			
-			echo $i;
+		$template.= "<a href=\"{$this->url}?page={$this->getPreviousPage()}\"><<</a>";
 
+		for ($i=$start; $i <= $end; $i++) { 
+	
 			if($i == $this->currentPage){
 
 				$template.= "<span>{$i}</span>";
@@ -64,12 +77,34 @@ class Paginator{
 
 				if($i >= 1 && $i <= $this->numberPages){
 
-					$template.= "<a href=\"{$this->url}?page={$i}\">{$i}</a>"
+					$template.= "<a href=\"{$this->url}?page={$i}\">{$i}</a>";
 				}
 			}
 
 		}
 
+		$template.= "<a href=\"{$this->url}?page={$this->getNextPage()}\">>></a>";
+
 		return $template;
+	}
+
+	public function getNextPage(){
+
+		if($this->currentPage == $this->numberPages){
+
+			return $this->currentPage;
+		}
+
+		return $this->currentPage+1;
+	}
+
+	public function getPreviousPage(){
+
+		if($this->currentPage == 1){
+
+			return $this->currentPage;
+		}
+
+		return $this->currentPage-1;
 	}
 }

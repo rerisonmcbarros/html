@@ -7,6 +7,7 @@ use \Lib\Core\Session;
 use \Lib\Database\Record;
 use \Lib\Database\Transaction;
 use \Lib\Log\LoggerTXT;
+use \Lib\Utilities\Paginator;
 use \App\Model\Product;
 use \App\Model\Cart;
 use \App\Model\CartItem;
