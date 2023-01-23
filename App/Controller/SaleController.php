@@ -265,7 +265,11 @@ class SaleController extends Controller{
 			
 			$sale = new Sale();
 
-			$sales = $sale->all();
+			$paginator = new Paginator($sale->getLastId(), "/Penedo/venda/list", 2);
+
+			$paginator->setNumberLinks(5);
+
+			$sales = $sale->all($paginator->getLimit(), $paginator->getOffset());
 
 			Transaction::close();
 		}
@@ -278,6 +282,7 @@ class SaleController extends Controller{
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
 		echo $engine->render("venda-list", [
+		'links' => ($paginator->links() ?? null),
 		'valorPeriodo' => null,
 		'sales' => ($sales ?? []),
 		'message' => ($message ?? '')	

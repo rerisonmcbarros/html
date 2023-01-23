@@ -36674,3 +36674,1188 @@
 
 2023-01-23 15:38:54 ## SELECT * FROM venda LIMIT 3 OFFSET 0
 
+2023-01-23 15:49:38 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:49:38 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:50:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:15 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:50:16 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:16 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:50:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:21 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:50:23 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:23 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:50:24 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:24 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:50:24 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:24 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:50:25 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:25 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:50:56 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:56 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:50:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:58 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:50:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:58 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:50:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:59 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:50:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:59 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:50:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:50:59 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:54:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:54:11 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:54:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:54:12 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:54:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:54:13 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:54:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:54:13 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:14 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:14 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:15 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:15 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:17 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:17 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:18 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:18 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:19 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:19 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:19 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:19 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:32 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:32 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:33 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:33 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:33 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:33 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:34 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:34 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:34 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:34 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:43 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:44 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:44 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:44 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:44 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:45 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:45 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:47 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:47 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:47 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:47 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:48 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:48 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:49 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:49 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:50 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:50 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:50 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:50 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:51 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:51 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:51 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:51 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:51 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:51 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:52 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:52 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:52 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:53 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:53 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:53 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:54 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:54 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:55 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:55 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:55 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:55 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:56 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:56 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:56 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:56 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 15:56:57 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:57 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 15:56:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:58 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:56:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:56:58 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:59:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:59:13 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 15:59:14 ## SELECT max(id) as last FROM venda
+
+2023-01-23 15:59:14 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:00:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:00:18 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:00:20 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:00:20 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:00:20 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:00:20 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:00:23 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:00:23 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:00:24 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:00:24 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:01:02 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:01:02 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:01:03 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:01:03 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:01:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:01:04 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:01:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:01:04 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:01:06 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:01:06 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:01:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:01:58 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:03:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:09 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:03:10 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:10 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:11 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:03:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:11 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:03:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:11 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:03:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:12 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:03:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:12 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:03:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:12 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:13 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:13 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:13 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:19 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:19 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:21 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:03:22 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:22 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:03:22 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:22 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:03:24 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:03:24 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:03 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:03 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:04 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:05:05 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:05 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:05:05 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:05 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:06 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:06 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:05:23 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:23 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:05:24 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:24 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:05:24 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:24 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:25 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:25 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:05:27 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:27 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:28 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:28 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:05:29 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:29 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:30 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:30 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:05:30 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:30 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:05:52 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:52 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:05:53 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:53 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:05:53 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:05:53 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:32 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:32 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:33 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:33 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:34 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:34 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:34 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:34 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:07:35 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:35 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:07:36 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:36 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:07:36 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:36 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:36 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:36 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:36 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:36 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:46 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:46 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:46 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:46 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:47 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:47 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:47 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:47 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:47 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:47 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:48 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:48 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:07:48 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:48 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:07:48 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:48 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:07:48 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:48 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:07:48 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:48 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:07:49 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:49 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:07:49 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:49 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:49 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:49 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:07:49 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:07:49 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:08:06 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:06 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:08:14 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:14 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:08:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:17 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:08:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:17 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:08:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:18 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:08:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:18 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:08:20 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:20 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:08:20 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:20 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:08:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:08:21 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:27:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:27:58 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:27:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:27:59 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:27:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:27:59 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:28:00 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:00 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:28:01 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:01 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:28:01 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:01 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:28:02 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:02 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:28:02 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:02 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:28:03 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:03 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:28:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:04 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:28:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:04 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:28:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:04 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:28:05 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:05 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:28:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:12 ## SELECT * FROM venda LIMIT 3 OFFSET 6
+
+2023-01-23 16:28:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:13 ## SELECT * FROM venda LIMIT 3 OFFSET 9
+
+2023-01-23 16:28:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:15 ## SELECT * FROM venda LIMIT 3 OFFSET 6
+
+2023-01-23 16:28:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:15 ## SELECT * FROM venda LIMIT 3 OFFSET 3
+
+2023-01-23 16:28:16 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:16 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:18 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:18 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:19 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:19 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:19 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:19 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:19 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:19 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:20 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:20 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:21 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:21 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:21 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:28:21 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:28:21 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:06 ## SELECT * FROM venda WHERE id = 1
+
+2023-01-23 16:29:06 ## SELECT *, item_venda.id as id_item_venda FROM item_venda INNER JOIN produto 
+					  ON item_venda.id_produto = produto.id WHERE id_venda = '1';
+
+2023-01-23 16:29:07 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:07 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:09 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:09 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:10 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:10 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:10 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:10 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:10 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:10 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:11 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:11 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:11 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:11 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:11 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:11 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:12 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:12 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:12 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:12 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:13 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:13 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:13 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:13 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:14 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:14 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:14 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:14 ## SELECT * FROM venda LIMIT 3 OFFSET 0
+
+2023-01-23 16:29:33 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:33 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:38 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:38 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:40 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:40 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:40 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:40 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:40 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:40 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:40 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:40 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:41 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:41 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:42 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:42 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:42 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:42 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:42 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:42 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:43 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:43 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:43 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:43 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:29:44 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:29:44 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:15 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:15 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:16 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:16 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:16 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:16 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:16 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:16 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:17 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:17 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:17 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:30:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:30:17 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:32:14 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:32:14 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:33:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:33:17 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:33:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:33:17 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:33:18 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:33:18 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:37:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:37:15 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:37:36 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:37:36 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:37:53 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:37:53 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:37:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:37:54 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:37:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:37:55 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:37:55 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:37:55 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:38:08 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:38:08 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:38:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:38:09 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:38:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:38:09 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:38:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:38:09 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:39:30 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:30 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:39:37 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:37 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:39:38 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:38 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:39:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:39:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:39 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-01-23 16:39:50 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:50 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:39:51 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:51 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:39:51 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:51 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:39:52 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:52 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:39:53 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:53 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:39:53 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:53 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:39:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:54 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:39:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:54 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:39:54 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:54 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:39:55 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:55 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:39:56 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:56 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:39:57 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:57 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:39:58 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:58 ## SELECT * FROM venda LIMIT 1 OFFSET 2
+
+2023-01-23 16:39:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:59 ## SELECT * FROM venda LIMIT 1 OFFSET 1
+
+2023-01-23 16:39:59 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:39:59 ## SELECT * FROM venda LIMIT 1 OFFSET 0
+
+2023-01-23 16:40:09 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:09 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:10 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:10 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:40:11 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:11 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:40:13 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:13 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:15 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:15 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:40:16 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:16 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:17 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:40:17 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:17 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:25 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:25 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:40:26 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:26 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:40:27 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:27 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:27 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:27 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:28 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:28 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:28 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:28 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:28 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:28 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:28 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:28 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:40:28 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:40:28 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:04 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:04 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:04 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:04 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:04 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:04 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:16 ## SELECT * FROM produto WHERE codigo = '02'
+
+2023-01-23 16:42:20 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:20 ## INSERT INTO venda (nome_cliente, desconto, valor_total, pagamento, id) VALUES ('Rerison Messias Campos de Barros', '10', '72', 'Dinheiro á vista', '4')
+
+2023-01-23 16:42:20 ## UPDATE produto SET id_categoria = '2', codigo = '02', descricao = 'Camisa de malha  tamanho P', preco_custo = '50', preco_venda = '80', estoque = '1' WHERE id = '2'
+
+2023-01-23 16:42:20 ## SELECT max(id) as last FROM item_venda
+
+2023-01-23 16:42:20 ## INSERT INTO item_venda (id_venda, id_produto, item_preco, quantidade, id) VALUES ('4', '2', '80', '1', '5')
+
+2023-01-23 16:42:25 ## SELECT * FROM produto WHERE codigo = '01'
+
+2023-01-23 16:42:35 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:35 ## INSERT INTO venda (nome_cliente, desconto, valor_total, pagamento, id) VALUES ('Rerison Messias Campos de Barros', '10', '360', 'Dinheiro á vista', '5')
+
+2023-01-23 16:42:35 ## UPDATE produto SET id_categoria = '1', codigo = '01', descricao = 'Terno Slim Preto Microfibra n 40', preco_custo = '300', preco_venda = '400', estoque = '2' WHERE id = '1'
+
+2023-01-23 16:42:35 ## SELECT max(id) as last FROM item_venda
+
+2023-01-23 16:42:35 ## INSERT INTO item_venda (id_venda, id_produto, item_preco, quantidade, id) VALUES ('5', '1', '400', '1', '6')
+
+2023-01-23 16:42:36 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:36 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:38 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:38 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:42:39 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:39 ## SELECT * FROM venda LIMIT 2 OFFSET 4
+
+2023-01-23 16:42:40 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:40 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:42:41 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:41 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:43 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:42:43 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:43 ## SELECT * FROM venda LIMIT 2 OFFSET 4
+
+2023-01-23 16:42:44 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:44 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:42:45 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:45 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:49 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:49 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:51 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:42:51 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:42:58 ## SELECT * FROM venda WHERE date(data_venda) >= date('2023-01-09') AND date(data_venda) <= date('2023-01-31')
+
+2023-01-23 16:45:26 ## SELECT * FROM venda WHERE date(data_venda) >= date('2023-01-09') AND date(data_venda) <= date('2023-01-31')
+
+2023-01-23 16:45:30 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:30 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:45:31 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:31 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:45:32 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:32 ## SELECT * FROM venda LIMIT 2 OFFSET 4
+
+2023-01-23 16:45:33 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:33 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:45:33 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:33 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:45:34 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:34 ## SELECT * FROM venda LIMIT 2 OFFSET 0
+
+2023-01-23 16:45:37 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:37 ## SELECT * FROM venda LIMIT 2 OFFSET 2
+
+2023-01-23 16:45:37 ## SELECT max(id) as last FROM venda
+
+2023-01-23 16:45:37 ## SELECT * FROM venda LIMIT 2 OFFSET 4
+
