@@ -52,19 +52,19 @@ $route->post("/categoria/{id}/update", "\App\Controller\CategoryController::upda
 
 // ROTA REGISTRO DE VENDAS //
 
-$route->get("/venda", "\App\Controller\VendaController::index");
-$route->post("/venda", "\App\Controller\VendaController::addCartItem");
+$route->get("/venda", "\App\Controller\SaleController::index");
+$route->post("/venda", "\App\Controller\SaleController::addCartItem");
 
-$route->get("/venda/cart/{id}/remove", "\App\Controller\VendaController::deleteCartItem");
-$route->get("/venda/cart/empty", "\App\Controller\VendaController::setCartEmpty");
+$route->get("/venda/cart/{id}/remove", "\App\Controller\SaleController::deleteCartItem");
+$route->get("/venda/cart/empty", "\App\Controller\SaleController::setCartEmpty");
 
-$route->get("/venda/register", "\App\Controller\VendaController::vendaRegisterForm");
-$route->post("/venda/register", "\App\Controller\VendaController::vendaRegisterSave");
+$route->get("/venda/register", "\App\Controller\SaleController::saleRegisterForm");
+$route->post("/venda/register", "\App\Controller\SaleController::saleRegisterSave");
 
-$route->get("/venda/list", "\App\Controller\VendaController::vendaList");
-$route->post("/venda/list", "\App\Controller\VendaController::findByDate");
+$route->get("/venda/list", "\App\Controller\SaleController::saleList");
+$route->post("/venda/list", "\App\Controller\SaleController::findByDate");
 
-$route->get("/venda/{id}/details", "\App\Controller\VendaController::getVendaDetails");
+$route->get("/venda/{id}/details", "\App\Controller\SaleController::getSaleDetails");
 
 
 //echo "<pre>",var_dump($route->getRoutes()),"</pre>";

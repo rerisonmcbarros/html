@@ -143,6 +143,7 @@ class Product extends Record{
 
 			$conn = Transaction::get();
 
+
 			$query = "SELECT 
 			produto.id,
 			produto.codigo,
@@ -172,9 +173,14 @@ class Product extends Record{
 
 	}	
 
-	public function getProdutoCategoria(){
+	public function getProdutoCategoria($limit = null, $offset = 0){
 
 		try{
+
+			if($limit == null){
+
+				$limit = $this->getLastId();
+			}
 
 			$conn = Transaction::get();
 
@@ -188,9 +194,12 @@ class Product extends Record{
 			categoria.codigo as codigo_categoria,
 			categoria.nome as nome_categoria  
 			FROM ".self::TABLE_NAME." INNER JOIN categoria 
-			ON produto.id_categoria = categoria.id ORDER BY produto.id";
+			ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset";
 
 			$stmt = $conn->prepare($query);
+
+			$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
 
 			$stmt->execute();
 

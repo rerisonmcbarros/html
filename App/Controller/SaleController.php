@@ -15,9 +15,8 @@ use \App\Model\Sale;
 use \App\View\Engine;
 use \App\Controller\Controller;
 
-use \App\Model\SaleMapper;
 
-class VendaController extends Controller{
+class SaleController extends Controller{
 	
 
 	public function index(){
@@ -163,7 +162,7 @@ class VendaController extends Controller{
 
 	}
 
-	public function vendaRegisterForm(){
+	public function saleRegisterForm(){
 
 		try{
 
@@ -191,7 +190,7 @@ class VendaController extends Controller{
 
 	}
 
-	public function vendaRegisterSave(){
+	public function saleRegisterSave(){
 
 		try{
 
@@ -254,7 +253,7 @@ class VendaController extends Controller{
 	}
 
 
-	public function vendaList(){
+	public function saleList(){
 
 		try{
 
@@ -347,7 +346,7 @@ class VendaController extends Controller{
 	}
 
 
-	public function getVendaDetails(){
+	public function getSaleDetails(){
 
 
 		try{

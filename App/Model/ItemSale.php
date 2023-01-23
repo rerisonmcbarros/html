@@ -48,7 +48,7 @@ class ItemSale extends Record{
 
 			$stmt->execute();
 
-			Transaction::log($this->getQueryLog($query, ['id_venda'=>$id_venda]));
+			Transaction::log($this->getQueryLog($query, ['id_venda'=> $id_venda]));
 
 			return $stmt->fetchAll(\PDO::FETCH_CLASS, get_class($this));
 		}

@@ -84,19 +84,28 @@ class Record implements \jsonSerializable{
 
 	}
 
-	public function all(string $columns = '*'){
+	public function all($limit = null, $offset = 0, string $columns = '*'){
 
+		
 		try{
+
+			if($limit == null){
+
+				$limit = $this->getLastId();
+			}
 
 			$conn = Transaction::get();
 
-			$query = "SELECT {$columns} FROM {$this->getEntity()}";
+			$query = "SELECT {$columns} FROM {$this->getEntity()} LIMIT :limit OFFSET :offset";
 
 			$stmt = $conn->prepare($query);
 
-			$stmt->execute();
+			$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
 
-			Transaction::log($query);
+			$result = $stmt->execute();
+
+			Transaction::log($this->getQueryLog($query,['limit' => (int)$limit, 'offset' => (int)$offset]));
 
 			return $stmt->fetchAll(\PDO::FETCH_CLASS, get_class($this));
 		}
@@ -221,7 +230,16 @@ class Record implements \jsonSerializable{
 
 		foreach($data  as $key => $value){
 
-			$queryLog = str_replace(":{$key}", "'{$value}'", $queryLog);
+			if(is_int($value)){
+
+				$value = $value;
+			}
+			else{
+
+				$value = "'{$value}'";
+			}
+
+			$queryLog = str_replace(":{$key}", $value, $queryLog);
 		}
 
 		return $queryLog;
