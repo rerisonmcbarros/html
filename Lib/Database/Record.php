@@ -10,7 +10,6 @@ class Record implements \jsonSerializable{
 
 	protected $data;
 
-
 	public function __set($name, $value){
 
 		$value = trim($value);
@@ -116,7 +115,7 @@ class Record implements \jsonSerializable{
 		}
 
 	}
-	
+
 	public function getLastId(){
 
 		try{
