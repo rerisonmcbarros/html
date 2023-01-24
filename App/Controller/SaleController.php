@@ -261,16 +261,21 @@ class SaleController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
-			
 			$sale = new Sale();
 
-			$paginator = new Paginator($sale->getLastId(), "/Penedo/venda/list", 2);
+			if($sale->getLastId() != null){
 
-			$paginator->setNumberLinks(5);
+				$paginator = new Paginator($sale->getLastId(), 15);
 
-			$sales = $sale->all($paginator->getLimit(), $paginator->getOffset());
+				$paginator->setNumberLinks(5);
 
+				$sales = $sale->all($paginator->getLimit(), $paginator->getOffset());
+			}
+			else{
+
+				$sales = $sale->all();
+			}
+			
 			Transaction::close();
 		}
 		catch(\Exception $e){
@@ -298,41 +303,51 @@ class SaleController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
+			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 			
 			$sale = new Sale();
 
-			if(empty($post['data_inicial'])){
+			if(empty($get['data_inicial'])){
 
 				throw new \Exception("O campo data início não pode ser vazio!");
 			}
 
-			if(empty($post['data_final'])){
+			if(empty($get['data_final'])){
 
 				throw new \Exception("O campo data final não pode ser vazio!");
 			}
 
-			$sales = $sale->findByDate($post['data_inicial'], $post['data_final']);
+			$totalResults = $sale->findByDateCount($get['data_inicial'], $get['data_final']);
 
-			if(!empty($sales)){
+			$paginator = new Paginator($totalResults, 10 );
 
-				$valorPeriodo = 0;
+			$paginator->setNumberLinks(5);
 
-				foreach($sales as $sale){
+			$sales = $sale->findByDate(
+				$get['data_inicial'], $get['data_final'], 
+				$paginator->getLimit(), $paginator->getOffset()
+			);
 
-					$valorPeriodo += $sale->valor_total;
-				}
-			}
-
-			if(empty($sales)){
+			
+			if(empty($totalResults)){
 
 				$sales = $sale->all();
 
 				throw new \Exception("Nenhuma venda encontrada para o período informado!");
 			}
+			else{
+
+				$salesTotal = $sale->findByDate($get['data_inicial'], $get['data_final']);
+				$valorPeriodo = 0;
+
+				foreach($salesTotal as $sale){
+
+					$valorPeriodo += $sale->valor_total;
+				}
+			}
 			
 			$message = $this->message->success(
-				"Vendas encontradas no período de ".date("d/m/Y",strtotime($post['data_inicial']) )." à ".date("d/m/Y",strtotime($post['data_final']) ));
+				"Vendas encontradas no período de ".date("d/m/Y",strtotime($get['data_inicial']) )." à ".date("d/m/Y",strtotime($get['data_final']) ));
 
 			Transaction::close();
 		}
@@ -345,6 +360,7 @@ class SaleController extends Controller{
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 		
 		echo $engine->render("venda-list", [
+		'links' => ($paginator->links() ?? null),
 		'valorPeriodo' => ($valorPeriodo ?? null),
 		'sales' => ($sales ?? []),
 		'message' => ($message ?? '')	

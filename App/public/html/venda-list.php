@@ -5,7 +5,7 @@
 			
 			<?= $message; ?>
 			
-			<form class="needs-validation" action="http://localhost/Penedo/venda/list" method="post" novalidate>
+			<form class="needs-validation" action="/Penedo/venda/list/period" method="GET" novalidate>
 
 				<fieldset class="col-12">
 					<legend class="h2 fw-light">Buscar por Período</legend>

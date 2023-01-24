@@ -72,18 +72,25 @@ class Sale extends Record{
 		$this->data["pagamento"] = $pagamento;
 	}
 
-	public function findByDate($data_inicial, $data_final){
+	public function findByDate($data_inicial, $data_final, $limit = null, $offset = 0){
+
+		if($limit == null){
+
+			$limit = $this->getLastId();
+		}
 
 		try{
 
 			$conn = Transaction::get();
 
-			$query = "SELECT * FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final)";
+			$query = "SELECT * FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final) LIMIT :limit OFFSET :offset";
 
 			$stmt = $conn->prepare($query);
 
 			$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
 			$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
+			$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
 
 			$stmt->execute();
 
@@ -95,6 +102,33 @@ class Sale extends Record{
 
 			return $e->getMessage();
 		}
+
+	}
+	
+	public function findByDateCount($data_inicial, $data_final){
+
+		try{
+
+			$conn = Transaction::get();
+
+			$query = "SELECT count(id) as total_results_period FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final)";
+
+			$stmt = $conn->prepare($query);
+
+			$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
+			$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
+
+			$stmt->execute();
+
+			Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]) );
+
+			return $stmt->fetch(\PDO::FETCH_ASSOC)['total_results_period'] ?? null;
+		}
+		catch(\PDOException $e){
+
+			return $e->getMessage();
+		}
+
 
 	}
 	

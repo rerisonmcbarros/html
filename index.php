@@ -62,7 +62,7 @@ $route->get("/venda/register", "\App\Controller\SaleController::saleRegisterForm
 $route->post("/venda/register", "\App\Controller\SaleController::saleRegisterSave");
 
 $route->get("/venda/list", "\App\Controller\SaleController::saleList");
-$route->post("/venda/list", "\App\Controller\SaleController::findByDate");
+$route->get("/venda/list/period", "\App\Controller\SaleController::findByDate");
 
 $route->get("/venda/{id}/details", "\App\Controller\SaleController::getSaleDetails");
 
