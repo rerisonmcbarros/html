@@ -263,18 +263,11 @@ class SaleController extends Controller{
 
 			$sale = new Sale();
 
-			if($sale->getLastId() != null){
+			$paginator = new Paginator($sale->getLastId(), 15);
 
-				$paginator = new Paginator($sale->getLastId(), 15);
+			$paginator->setNumberLinks(5);
 
-				$paginator->setNumberLinks(5);
-
-				$sales = $sale->all($paginator->getLimit(), $paginator->getOffset());
-			}
-			else{
-
-				$sales = $sale->all();
-			}
+			$sales = $sale->all($paginator->getLimit(), $paginator->getOffset());
 			
 			Transaction::close();
 		}
@@ -319,7 +312,7 @@ class SaleController extends Controller{
 
 			$totalResults = $sale->findByDateCount($get['data_inicial'], $get['data_final']);
 
-			$paginator = new Paginator($totalResults, 10 );
+			$paginator = new Paginator($totalResults, 10);
 
 			$paginator->setNumberLinks(5);
 
@@ -327,25 +320,14 @@ class SaleController extends Controller{
 				$get['data_inicial'], $get['data_final'], 
 				$paginator->getLimit(), $paginator->getOffset()
 			);
-
 			
 			if(empty($totalResults)){
 
-				$sales = $sale->all();
-
 				throw new \Exception("Nenhuma venda encontrada para o período informado!");
 			}
-			else{
-
-				$salesTotal = $sale->findByDate($get['data_inicial'], $get['data_final']);
-				$valorPeriodo = 0;
-
-				foreach($salesTotal as $sale){
-
-					$valorPeriodo += $sale->valor_total;
-				}
-			}
 			
+			$valorPeriodo = $sale->getValorTotalByDate($get['data_inicial'], $get['data_final']);
+				
 			$message = $this->message->success(
 				"Vendas encontradas no período de ".date("d/m/Y",strtotime($get['data_inicial']) )." à ".date("d/m/Y",strtotime($get['data_final']) ));
 

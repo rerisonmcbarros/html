@@ -128,8 +128,31 @@ class Sale extends Record{
 
 			return $e->getMessage();
 		}
+	}
 
+	public function getValorTotalByDate($data_inicial, $data_final){
 
+		try{
+
+			$conn = Transaction::get();
+
+			$query = "SELECT sum(valor_total) as valor_total_periodo FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final)";
+
+			$stmt = $conn->prepare($query);
+
+			$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
+			$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
+
+			$stmt->execute();
+
+			Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]) );
+
+			return $stmt->fetch(\PDO::FETCH_ASSOC)['valor_total_periodo'] ?? null;
+		}
+		catch(\PDOException $e){
+
+			return $e->getMessage();
+		}
 	}
 	
 }

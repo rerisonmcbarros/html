@@ -19,14 +19,12 @@ class Paginator{
 
 	public function __construct($totalResults, $limit){
 
-		$this->totalResults = $totalResults;
+		$this->totalResults = $totalResults ?? 0;
 		$this->url = $this->setUrl();
 		$this->limit = $limit;
 		$this->currentPage = $this->getCurrentPage();
 		$this->offset = ($this->getcurrentPage()*$this->limit)-$this->limit;
 		$this->setNumberPages(); 
-
-		
 	}
 
 	public function getLimit(){
