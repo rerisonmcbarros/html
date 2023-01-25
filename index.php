@@ -27,7 +27,7 @@ $route->get("/", "\App\Controller\PageController::home");
 
 // ROTAS PRODUTO //
 $route->get("/produto/list", "\App\Controller\ProductController::list");
-$route->post("/produto/list", "\App\Controller\ProductController::findByCategory");
+//$route->get("/produto/list/by-category", "\App\Controller\ProductController::findByCategory");
 
 $route->get("/produto/{id}/remove", "\App\Controller\ProductController::remove");
 //$route->post("/produto/{id}/remove", "\App\Controller\ProductController::findByCategoria");

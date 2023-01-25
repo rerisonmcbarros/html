@@ -69,9 +69,9 @@
 
 					</tbody>
 				</table>
-				<div class="pagination  justify-content-center">
-					<?= ($links ?? null); ?>
-				</div>
+			</div>
+			<div class="pagination  justify-content-center mb-3">
+				<?= ($links ?? null); ?>
 			</div>	
 		</div>
 	</main>

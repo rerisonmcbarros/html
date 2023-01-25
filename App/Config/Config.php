@@ -11,7 +11,7 @@ define("DOCUMENT_ROOT", "Penedo");
 define("DB_CONFIG", [
 
 	"DB_DRIVE" => "mysql",
-	"DB_HOST" => "localhost",
+	"DB_HOST" => "127.0.0.1",
 	"DB_NAME" => "penedo",
 	"DB_PORT" => "3306",
 	"DB_USER" => "root",

@@ -137,12 +137,16 @@ class Product extends Record{
 		}
 	}
 
-	public function findByCategoria(string $nome){
+	public function findByCategoria(string $nome, $limit = null, $offset = 0){
 
 		try{
 
-			$conn = Transaction::get();
+			if($limit == null){
 
+				$limit = $this->findByCategoriaCount($nome);
+			}
+			
+			$conn = Transaction::get();
 
 			$query = "SELECT 
 			produto.id,
@@ -154,11 +158,14 @@ class Product extends Record{
 			categoria.codigo as codigo_categoria,
 			categoria.nome as nome_categoria  
 			FROM ".self::TABLE_NAME." INNER JOIN categoria 
-			ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%',:nome, '%') ";
+			ON produto.id_categoria = categoria.id WHERE categoria.nome 
+			LIKE CONCAT('%',:nome, '%') LIMIT :limit OFFSET :offset";
 
 			$stmt = $conn->prepare($query);
 
 			$stmt->bindValue(":nome", $nome, \PDO::PARAM_STR);
+			$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
 
 			$stmt->execute();
 
@@ -170,8 +177,33 @@ class Product extends Record{
 
 			return $e->getMessage();
 		}
-
 	}	
+
+	public function findByCategoriaCount(string $nome){
+
+		try{
+
+			$conn = Transaction::get();
+
+			$query = "SELECT count(categoria.nome) as count FROM ".self::TABLE_NAME." INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%',:nome, '%') ";
+
+			$stmt = $conn->prepare($query);
+
+			$stmt->bindValue(":nome", $nome, \PDO::PARAM_STR);
+
+			$stmt->execute();
+
+			Transaction::log($this->getQueryLog($query, ['nome'=> $nome]));
+
+			return $stmt->fetch(\PDO::FETCH_ASSOC)['count'] ?? null;
+		}
+		catch(\PDOException $e){
+
+			return $e->getMessage();
+		}
+
+	}
 
 	public function getProdutoCategoria($limit = null, $offset = 0){
 
@@ -191,7 +223,6 @@ class Product extends Record{
 			produto.preco_custo,
 			produto.preco_venda,
 			produto.estoque,
-			categoria.codigo as codigo_categoria,
 			categoria.nome as nome_categoria  
 			FROM ".self::TABLE_NAME." INNER JOIN categoria 
 			ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset";

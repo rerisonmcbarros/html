@@ -253,7 +253,6 @@ class SaleController extends Controller{
 
 	}
 
-
 	public function saleList(){
 
 		try{
@@ -312,7 +311,7 @@ class SaleController extends Controller{
 
 			$totalResults = $sale->findByDateCount($get['data_inicial'], $get['data_final']);
 
-			$paginator = new Paginator($totalResults, 10);
+			$paginator = new Paginator($totalResults, 15);
 
 			$paginator->setNumberLinks(5);
 
@@ -321,12 +320,13 @@ class SaleController extends Controller{
 				$paginator->getLimit(), $paginator->getOffset()
 			);
 			
+			$valorPeriodo = $sale->getValorTotalByDate($get['data_inicial'], $get['data_final']);
+
 			if(empty($totalResults)){
 
 				throw new \Exception("Nenhuma venda encontrada para o período informado!");
 			}
 			
-			$valorPeriodo = $sale->getValorTotalByDate($get['data_inicial'], $get['data_final']);
 				
 			$message = $this->message->success(
 				"Vendas encontradas no período de ".date("d/m/Y",strtotime($get['data_inicial']) )." à ".date("d/m/Y",strtotime($get['data_final']) ));

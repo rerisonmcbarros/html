@@ -5,7 +5,7 @@
 		<div class="col-12">
 			<div><?= $message; ?></div>
 			
-			<form class="needs-validation" action="http://localhost/Penedo/produto/list" method="post" novalidate>
+			<form class="needs-validation" action="http://localhost/Penedo/produto/list" method="get" novalidate>
 				<fieldset class="col-12">
 					<legend class="h2  fw-light">Busca por Categoria</legend>
 
@@ -61,6 +61,9 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="pagination  justify-content-center mb-3">
+				<?= ($links ?? null); ?>
+			</div>	
 			<a  class="btn btn-success" href="/Penedo/produto/create">Cadastrar Produto</a>
 		</div>
 	</main>

@@ -42,8 +42,6 @@ class Connect{
 		}
 		catch(\PDOException $e){
 
-			echo "<pre>", var_dump($e), "</pre>";
-
 			return "{$e->getMessage()} - {$e->getFile()} - {$e->getLine()}";
 		}
 
