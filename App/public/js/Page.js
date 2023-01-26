@@ -49,12 +49,14 @@ class Page{
 
 	checkToRemoveItems(){
 
-		let links = document.querySelectorAll('a[href*="remove"]');
-		
+		let links = document.querySelectorAll('a[href$="remove"]');
+
+		console.log(links);
+
        links.forEach((link, index)=>{
 
 			link.addEventListener("click",(event)=>{
-
+       			
 				event.preventDefault();
 
 				let confirm;

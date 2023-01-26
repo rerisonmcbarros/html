@@ -42,9 +42,9 @@ class ProductController extends Controller{
 
 			$product = new Product();
 
-			$paginator = new Paginator($product->getLastId(), 1);
+			$paginator = new Paginator($product->getLastId(), 15);
 
-			$paginator->setNumberLinks(3);
+			$paginator->setNumberLinks(5);
 
 			$products = $product->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
 
@@ -120,9 +120,9 @@ class ProductController extends Controller{
 
 			$cart = new Cart();
 
-			$paginator = new Paginator($product->getLastId(), 1);
+			$paginator = new Paginator($product->getLastId(), 15);
 
-			$paginator->setNumberLinks(3);
+			$paginator->setNumberLinks(5);
 
 			$products = $product->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
 			
@@ -152,9 +152,9 @@ class ProductController extends Controller{
 				}
 			}
 
-			$paginator = new Paginator($product->getLastId(), 1);
+			$paginator = new Paginator($product->getLastId(), 15);
 
-			$paginator->setNumberLinks(3);
+			$paginator->setNumberLinks(5);
 
 			$products = $product->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
 

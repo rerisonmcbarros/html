@@ -29,7 +29,9 @@
 					</tbody>
 				</table>
 			</div>
-
+			<div class="pagination  justify-content-center mb-3">
+				<?= ($links ?? null); ?>
+			</div>	
 			<a class="btn btn-success" href="/Penedo/categoria/create">Cadastrar Categoria</a>
 		</div>
 	</main>

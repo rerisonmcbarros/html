@@ -6,6 +6,7 @@ use \Lib\Core\Request;
 use \Lib\Database\Record;
 use \Lib\Database\Transaction;
 use \Lib\Log\LoggerTXT;
+use \Lib\Utilities\Paginator;
 use \App\Model\Category;
 use \App\Model\Product;
 use \App\View\Engine;
@@ -23,7 +24,10 @@ class CategoryController extends Controller{
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
 			$category = new Category();
-			$categories = $category->all();
+			$paginator = new Paginator($category->getLastId(),15);
+			$paginator->setNumberLinks(5);
+
+			$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
 
 			Transaction::close();
 		}
@@ -36,6 +40,7 @@ class CategoryController extends Controller{
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
 		echo $engine->render("categoria-list", [
+		'links'    => $paginator->links() ?? null,
 		'categories' => $categories,
 		'message' => ($message ?? '')	
 		]);	
@@ -128,6 +133,9 @@ class CategoryController extends Controller{
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
+			$paginator = new Paginator($category->getLastId(),15);
+			$paginator->setNumberLinks(5);
+
 			$finded = $category->find($get['id']);
 
 			if(!empty($finded)){
@@ -137,7 +145,7 @@ class CategoryController extends Controller{
 
 			if(!empty($products)){
 
-				$categories = $category->all();
+				$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
 
 				throw new \Exception("Impossível remover, há Produtos com essa categoria!");
 			}
@@ -146,7 +154,7 @@ class CategoryController extends Controller{
 
 			$message = $this->message->success("Categoria removida com sucesso!");
 
-			$categories = $category->all();
+			$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
 
 			Transaction::close();
 		}
@@ -159,6 +167,7 @@ class CategoryController extends Controller{
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
 		echo $engine->render("categoria-list", [
+	 	'links'  => $paginator->links() ?? null,
 		'categories' => ($categories ?? []),
 		'message' => ($message ?? '')	
 		]);	
