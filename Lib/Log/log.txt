@@ -58635,3 +58635,133 @@
 2023-02-20 19:12:43 ## SELECT *, item_venda.id as id_item_venda FROM item_venda INNER JOIN produto 
 					  ON item_venda.id_produto = produto.id WHERE id_venda = '1';
 
+2023-02-20 19:54:12 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:54:12 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:54:21 ## SELECT * FROM categoria WHERE codigo = '05'
+
+2023-02-20 19:54:21 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:54:21 ## INSERT INTO categoria (id, codigo, nome) VALUES ('5', '05', 're')
+
+2023-02-20 19:54:27 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:54:27 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:54:29 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:54:29 ## SELECT * FROM categoria WHERE id = 5
+
+2023-02-20 19:54:29 ## SELECT count(categoria.nome) as count FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%','re', '%') 
+
+2023-02-20 19:54:29 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.codigo as codigo_categoria,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome 
+			LIKE CONCAT('%','re', '%') LIMIT :limit OFFSET :offset
+
+2023-02-20 19:54:29 ## DELETE FROM categoria WHERE id = '5'
+
+2023-02-20 19:54:29 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:54:41 ## SELECT * FROM categoria WHERE codigo = '05'
+
+2023-02-20 20:02:14 ## SELECT * FROM categoria WHERE codigo = '05'
+
+2023-02-20 20:02:20 ## SELECT * FROM categoria WHERE codigo = '05'
+
+2023-02-20 20:02:20 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 20:02:20 ## INSERT INTO categoria (id, codigo, nome) VALUES ('5', '05', 'Terno')
+
+2023-02-20 20:02:24 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 20:02:24 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 20:02:28 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 20:02:28 ## SELECT * FROM categoria WHERE id = 5
+
+2023-02-20 20:02:28 ## SELECT count(categoria.nome) as count FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%','Terno', '%') 
+
+2023-02-20 20:02:28 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.codigo as codigo_categoria,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome 
+			LIKE CONCAT('%','Terno', '%') LIMIT :limit OFFSET :offset
+
+2023-02-20 20:02:28 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 20:03:21 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 20:03:21 ## SELECT * FROM categoria WHERE id = 5
+
+2023-02-20 20:03:21 ## SELECT count(categoria.nome) as count FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%','Terno', '%') 
+
+2023-02-20 20:03:21 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.codigo as codigo_categoria,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome 
+			LIKE CONCAT('%','Terno', '%') LIMIT :limit OFFSET :offset
+
+2023-02-20 20:03:21 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 20:03:27 ## SELECT * FROM categoria WHERE id = 5
+
+2023-02-20 20:03:34 ## SELECT * FROM categoria WHERE id = 5
+
+2023-02-20 20:03:34 ## UPDATE categoria SET codigo = '05', nome = 're' WHERE id = '5'
+
+2023-02-20 20:03:37 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 20:03:37 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 20:03:41 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 20:03:41 ## SELECT * FROM categoria WHERE id = 5
+
+2023-02-20 20:03:41 ## SELECT count(categoria.nome) as count FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%','re', '%') 
+
+2023-02-20 20:03:41 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.codigo as codigo_categoria,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id WHERE categoria.nome 
+			LIKE CONCAT('%','re', '%') LIMIT :limit OFFSET :offset
+
+2023-02-20 20:03:41 ## DELETE FROM categoria WHERE id = '5'
+
+2023-02-20 20:03:41 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+

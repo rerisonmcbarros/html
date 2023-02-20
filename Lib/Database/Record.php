@@ -48,7 +48,10 @@ class Record implements \jsonSerializable{
 
 	public function setData(array $data){
 
-		$this->data = $data;
+		foreach($data as $key => $value){
+
+			$this->$key = $value;
+		}
 	}
 
 	public function getEntity(){
