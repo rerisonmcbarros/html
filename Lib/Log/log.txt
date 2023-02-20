@@ -58617,3 +58617,21 @@
 
 2023-02-20 19:07:12 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
 
+2023-02-20 19:11:29 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:11:29 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:11:30 ## SELECT max(id) as last FROM venda
+
+2023-02-20 19:11:30 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-02-20 19:11:37 ## SELECT * FROM venda WHERE id = 1
+
+2023-02-20 19:11:37 ## SELECT *, item_venda.id as id_item_venda FROM item_venda INNER JOIN produto 
+					  ON item_venda.id_produto = produto.id WHERE id_venda = '1';
+
+2023-02-20 19:12:43 ## SELECT * FROM venda WHERE id = 1
+
+2023-02-20 19:12:43 ## SELECT *, item_venda.id as id_item_venda FROM item_venda INNER JOIN produto 
+					  ON item_venda.id_produto = produto.id WHERE id_venda = '1';
+

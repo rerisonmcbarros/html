@@ -24,7 +24,7 @@ class CategoryController extends Controller{
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
 			$category = new Category();
-			$paginator = new Paginator($category->getLastId(),15);
+			$paginator = new Paginator($category->count(),15);
 			$paginator->setNumberLinks(5);
 
 			$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
@@ -133,7 +133,7 @@ class CategoryController extends Controller{
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-			$paginator = new Paginator($category->getLastId(),15);
+			$paginator = new Paginator($category->count(),15);
 			$paginator->setNumberLinks(5);
 
 			$finded = $category->find($get['id']);
