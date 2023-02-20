@@ -35,7 +35,6 @@ class ProductController extends Controller{
 				if(isset($get["remove"])){
 
 				}
-
 				$this->findByCategory();
 				return;
 			}

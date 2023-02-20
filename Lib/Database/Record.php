@@ -116,6 +116,28 @@ class Record implements \jsonSerializable{
 
 	}
 
+	public function count(){
+		try{
+
+			$conn = Transaction::get();
+
+			$query = "SELECT count(id) as count FROM {$this->getEntity()}";
+
+			$stmt = $conn->prepare($query);
+
+			$stmt->execute();
+
+			Transaction::log($query);
+
+			return $stmt->fetch(\PDO::FETCH_ASSOC)['count'];
+
+		}
+		catch(\PDOException $e){
+
+			return $e->getMessage();
+		}
+	}
+
 	public function getLastId(){
 
 		try{

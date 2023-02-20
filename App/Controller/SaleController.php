@@ -310,7 +310,6 @@ class SaleController extends Controller{
 			}
 
 			$totalResults = $sale->findByDateCount($get['data_inicial'], $get['data_final']);
-
 			$paginator = new Paginator($totalResults, 15);
 
 			$paginator->setNumberLinks(5);

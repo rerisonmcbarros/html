@@ -24,7 +24,7 @@ class Uploader{
 
 	}
 
-	public function seAllowedTypes(array $types){
+	public function setAllowedTypes(array $types){
 
 		$this->allowedTypes = $types;
 	}

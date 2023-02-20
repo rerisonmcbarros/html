@@ -58446,3 +58446,174 @@
 			FROM produto INNER JOIN categoria 
 			ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset
 
+2023-02-20 18:47:16 ## SELECT max(id) as last FROM produto
+
+2023-02-20 18:47:16 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset
+
+2023-02-20 18:47:19 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 18:47:19 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 18:47:23 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 18:47:23 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 18:52:27 ## SELECT max(id) as last FROM venda
+
+2023-02-20 18:52:27 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-02-20 18:52:46 ## SELECT max(id) as last FROM venda
+
+2023-02-20 18:52:46 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-02-20 18:57:03 ## SELECT count(id) as total_results_period FROM venda WHERE date(data_venda) >= date('2023-02-01') AND date(data_venda) <= date('2023-02-28')
+
+2023-02-20 18:57:03 ## SELECT * FROM venda WHERE date(data_venda) >= date('2023-02-01') AND date(data_venda) <= date('2023-02-28') LIMIT :limit OFFSET :offset
+
+2023-02-20 18:57:03 ## SELECT sum(valor_total) as valor_total_periodo FROM venda WHERE date(data_venda) >= date('2023-02-01') AND date(data_venda) <= date('2023-02-28')
+
+2023-02-20 19:00:00 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:00 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:00:07 ## SELECT * FROM categoria WHERE codigo = '01'
+
+2023-02-20 19:00:07 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:07 ## INSERT INTO categoria (codigo, nome, id) VALUES ('01', 'Terno', '1')
+
+2023-02-20 19:00:09 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:09 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:00:29 ## SELECT * FROM categoria WHERE codigo = '02'
+
+2023-02-20 19:00:29 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:29 ## INSERT INTO categoria (codigo, nome, id) VALUES ('02', 'Camisa', '2')
+
+2023-02-20 19:00:31 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:31 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:00:42 ## SELECT * FROM categoria WHERE codigo = '03'
+
+2023-02-20 19:00:42 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:42 ## INSERT INTO categoria (codigo, nome, id) VALUES ('03', 'Sapato', '3')
+
+2023-02-20 19:00:53 ## SELECT * FROM categoria WHERE codigo = '04'
+
+2023-02-20 19:00:53 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:53 ## INSERT INTO categoria (codigo, nome, id) VALUES ('04', 'Acessório', '4')
+
+2023-02-20 19:00:54 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:00:54 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:01:01 ## SELECT max(id) as last FROM produto
+
+2023-02-20 19:01:01 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset
+
+2023-02-20 19:01:02 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:01:02 ## SELECT * FROM categoria LIMIT 4 OFFSET 0
+
+2023-02-20 19:02:08 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:02:08 ## SELECT * FROM categoria LIMIT 4 OFFSET 0
+
+2023-02-20 19:02:08 ## SELECT * FROM produto WHERE codigo = '01'
+
+2023-02-20 19:02:08 ## SELECT max(id) as last FROM produto
+
+2023-02-20 19:02:08 ## INSERT INTO produto (codigo, id_categoria, descricao, preco_custo, preco_venda, estoque, id) VALUES ('01', '1', 'Terno Slim Preto n:40 Microfibra', '249.99', '349.90', '5', '1')
+
+2023-02-20 19:02:10 ## SELECT max(id) as last FROM produto
+
+2023-02-20 19:02:10 ## SELECT 
+			produto.id,
+			produto.codigo,
+			produto.descricao,
+			produto.preco_custo,
+			produto.preco_venda,
+			produto.estoque,
+			categoria.nome as nome_categoria  
+			FROM produto INNER JOIN categoria 
+			ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset
+
+2023-02-20 19:02:18 ## SELECT * FROM produto WHERE codigo = '01'
+
+2023-02-20 19:02:37 ## SELECT max(id) as last FROM venda
+
+2023-02-20 19:02:37 ## INSERT INTO venda (nome_cliente, desconto, valor_total, pagamento, id) VALUES ('Rérison Barros', '10', '314.91', 'A vista', '1')
+
+2023-02-20 19:02:37 ## UPDATE produto SET codigo = '01', id_categoria = '1', descricao = 'Terno Slim Preto n:40 Microfibra', preco_custo = '249.99', preco_venda = '349.9', estoque = '4' WHERE id = '1'
+
+2023-02-20 19:02:38 ## SELECT max(id) as last FROM item_venda
+
+2023-02-20 19:02:38 ## INSERT INTO item_venda (id_venda, id_produto, item_preco, quantidade, id) VALUES ('1', '1', '349.9', '1', '1')
+
+2023-02-20 19:02:49 ## SELECT max(id) as last FROM venda
+
+2023-02-20 19:02:49 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-02-20 19:02:52 ## SELECT max(id) as last FROM categoria
+
+2023-02-20 19:02:52 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:02:55 ## SELECT max(id) as last FROM venda
+
+2023-02-20 19:02:55 ## SELECT * FROM venda LIMIT 15 OFFSET 0
+
+2023-02-20 19:02:56 ## SELECT * FROM venda WHERE id = 1
+
+2023-02-20 19:02:56 ## SELECT *, item_venda.id as id_item_venda FROM item_venda INNER JOIN produto 
+					  ON item_venda.id_produto = produto.id WHERE id_venda = '1';
+
+2023-02-20 19:06:21 ## SELECT * FROM venda WHERE id = 1
+
+2023-02-20 19:06:21 ## SELECT *, item_venda.id as id_item_venda FROM item_venda INNER JOIN produto 
+					  ON item_venda.id_produto = produto.id WHERE id_venda = '1';
+
+2023-02-20 19:06:23 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:06:23 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:06:26 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:06:26 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:06:27 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:06:27 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:06:54 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:06:54 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:06:54 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-20 19:07:12 ## SELECT count(id) as count FROM categoria
+
+2023-02-20 19:07:12 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+

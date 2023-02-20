@@ -7,7 +7,7 @@ use \Lib\Core\Request;
 class Route{
 	
 	private $request;
-	private $seprator;
+	private $separator;
 	private $routes;
 
 	public function __construct( Request $request, $separator){

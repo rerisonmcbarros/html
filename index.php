@@ -8,6 +8,8 @@ use \Lib\Core\Route;
 
 $request = new Request(DOCUMENT_ROOT);
 
+//echo "<pre>", var_dump($request->uri()), "</pre>";
+
 $route = new Route($request, "::");
 
 // TESTE DE ROTAS //
@@ -65,7 +67,6 @@ $route->get("/venda/list", "\App\Controller\SaleController::saleList");
 $route->get("/venda/list/period", "\App\Controller\SaleController::findByDate");
 
 $route->get("/venda/{id}/details", "\App\Controller\SaleController::getSaleDetails");
-
 
 //echo "<pre>",var_dump($route->getRoutes()),"</pre>";
 
