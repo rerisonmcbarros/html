@@ -41,7 +41,7 @@ class ProductController extends Controller{
 
 			$product = new Product();
 
-			$paginator = new Paginator($product->getLastId(), 15);
+			$paginator = new Paginator($product->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
@@ -119,7 +119,7 @@ class ProductController extends Controller{
 
 			$cart = new Cart();
 
-			$paginator = new Paginator($product->getLastId(), 15);
+			$paginator = new Paginator($product->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
@@ -151,7 +151,7 @@ class ProductController extends Controller{
 				}
 			}
 
-			$paginator = new Paginator($product->getLastId(), 15);
+			$paginator = new Paginator($product->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
