@@ -262,7 +262,7 @@ class SaleController extends Controller{
 
 			$sale = new Sale();
 
-			$paginator = new Paginator($sale->getLastId(), 15);
+			$paginator = new Paginator($sale->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
