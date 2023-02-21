@@ -97,10 +97,10 @@ class CategoryController extends Controller{
 			if(empty($category)){
 
 				throw new \Exception("Categoria não encontrado!");		
-			}		
-		
-			$category->codigo = $category->codigo;
-			$category->nome = $post['nome'];
+			}	
+				
+			$post['codigo'] = $category->codigo;
+			$category->setData($post);
 			
 			$category->store();
 
