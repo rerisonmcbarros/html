@@ -58765,3 +58765,15 @@
 
 2023-02-20 20:03:41 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
 
+2023-02-21 18:50:45 ## SELECT count(id) as count FROM categoria
+
+2023-02-21 18:50:45 ## SELECT * FROM categoria LIMIT 15 OFFSET 0
+
+2023-02-21 18:50:56 ## SELECT * FROM categoria WHERE codigo = '05'
+
+2023-02-21 18:50:56 ## SELECT max(id) as last FROM categoria
+
+2023-02-21 18:50:56 ## INSERT INTO categoria (id, codigo, nome) VALUES ('5', '05', 'dwawa')
+
+2023-02-21 18:51:05 ## SELECT * FROM categoria WHERE codigo = '06'
+

@@ -98,7 +98,7 @@ class CategoryController extends Controller{
 
 				throw new \Exception("Categoria não encontrado!");		
 			}		
-			
+		
 			$category->codigo = $category->codigo;
 			$category->nome = $post['nome'];
 			
@@ -192,9 +192,8 @@ class CategoryController extends Controller{
 				throw new \Exception("A Categoria informada já existe!");
 			}
 
-			$category->codigo = $post['codigo'];
-			$category->nome = $post['nome'];
-			
+			$category->setData($post);
+
 			$category->store(); 
 
 			$message = $this->message->success("Categoria '{$category->nome}' Cadastrada com sucesso!");	
