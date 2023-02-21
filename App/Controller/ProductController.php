@@ -201,7 +201,7 @@ class ProductController extends Controller{
 			$product->store(); 
 
 			//UPLOAD DE IMAGENS DO PRODUTO//
-
+			/*
 			if(!empty($_FILES['file']['name'][0])){
 
 				$uploader = new Uploader($_FILES['file'], true);
@@ -228,7 +228,7 @@ class ProductController extends Controller{
 					}	
 				}
 			}
-
+			*/
 			$message = $this->message->success("Produto '{$product->descricao}' Cadastrado com sucesso!");
 
 			$product->setData([]);
@@ -277,13 +277,10 @@ class ProductController extends Controller{
 				throw new \Exception("Impossível atualizar Produto com Carrinho de Compras cheio!");
 			}
 			
-			$product->codigo = $product->codigo;
-			$product->id_categoria = $post['id_categoria'];
-			$product->descricao = $post['descricao'];
-			$product->preco_custo = $post['preco_custo'];
-			$product->preco_venda = $post['preco_venda'];
-			$product->estoque = $post['estoque'];
-		
+			$post['codigo'] = $product->codigo;
+			
+			$product->setData($post);
+			
 			$product->store();
 
 			$message = $this->message->success("Produto atualizado com sucesso!");	
