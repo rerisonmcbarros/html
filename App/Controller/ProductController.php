@@ -139,7 +139,7 @@ class ProductController extends Controller{
 			}
 
 			$product->delete($get['id']);
-			
+			/*
 			$imageProduct = new ImageProduct();
 
 			$images = $imageProduct->findByProduto($get['id']);
@@ -150,7 +150,7 @@ class ProductController extends Controller{
 			 	 $image->delete();
 				}
 			}
-
+			*/
 			$paginator = new Paginator($product->count(), 15);
 
 			$paginator->setNumberLinks(5);
@@ -278,7 +278,7 @@ class ProductController extends Controller{
 			}
 			
 			$post['codigo'] = $product->codigo;
-			
+
 			$product->setData($post);
 			
 			$product->store();
