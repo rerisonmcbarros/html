@@ -16,7 +16,6 @@ class Paginator{
 
 	private $totalResults;
 
-
 	public function __construct($totalResults, $limit){
 
 		$this->totalResults = $totalResults ?? 0;
@@ -37,12 +36,12 @@ class Paginator{
 		return $this->offset;
 	}
 
-	public function getCurrentPage(){
+	private function getCurrentPage(){
 
 		return filter_input(INPUT_GET, "page", FILTER_DEFAULT) ?? 1;
 	}
 
-	public function setNumberPages(){
+	private function setNumberPages(){
 
 		if($this->totalResults <= $this->limit){
 
@@ -101,7 +100,7 @@ class Paginator{
 		return $template;
 	}
 
-	public function getNextPage(){
+	private function getNextPage(){
 
 		if($this->currentPage >= $this->numberPages){
 
@@ -111,7 +110,7 @@ class Paginator{
 		return $this->currentPage+1;
 	}
 
-	public function getPreviousPage(){
+	private function getPreviousPage(){
 
 		if($this->currentPage <= 1){
 
@@ -121,7 +120,7 @@ class Paginator{
 		return $this->currentPage-1;
 	}
 
-	public function setUrl(){
+	private function setUrl(){
 
 		$url = filter_input(INPUT_SERVER, "REQUEST_URI");
 
