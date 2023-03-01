@@ -49,7 +49,7 @@ class Route{
 		return $this->routes;
 	}
 
-	public function addRoute($method, $route, $function){
+	private function addRoute($method, $route, $function){
 
 		if($function instanceof \Closure){
 
@@ -113,7 +113,7 @@ class Route{
 		}
 	}
 
-	public function routeExists($method){
+	private function routeExists($method){
 
 		$uri = $this->request->uri();
 		$explodeUri = explode("/", $uri);
