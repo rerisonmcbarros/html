@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Repository;
+namespace App\Repository;
 
 use App\Model\Product;
 use Lib\Database\Mapper;
