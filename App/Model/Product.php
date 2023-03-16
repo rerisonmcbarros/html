@@ -2,9 +2,6 @@
 
 namespace App\Model;
 
-use Lib\Database\Record;
-use Lib\Database\Transaction;
-
 class Product extends Model
 {		
 	public function setCodigo( $codigo )
@@ -89,5 +86,10 @@ class Product extends Model
 		}
 
 		$this->data['estoque'] = $estoque;
+	}
+
+	public function reduceStorage(int $quantity)
+	{
+		$this->estoque -= $quantity;
 	}
 }
