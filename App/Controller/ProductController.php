@@ -6,11 +6,11 @@ use \Lib\Database\Transaction;
 use \Lib\Log\LoggerTXT;
 use \Lib\Utilities\Paginator;
 use \App\Model\Product;
-use \App\Model\ItemSale;
 use \App\Model\Cart;
 use \App\View\Engine;
 use \App\Controller\Controller;
 use App\Repository\CategoryRepository;
+use App\Repository\ItemSaleRepository;
 use App\Repository\ProductRepository;
 
 class ProductController extends Controller
@@ -112,9 +112,9 @@ class ProductController extends Controller
 				throw new \Exception("Impossível remover Produto com Carrinho de Compras cheio!");
 			}
 
-			$itemSale = new ItemSale();
+			$itemSaleRepository = new ItemSaleRepository();
 
-			if(!empty($itemSale->findByProduto($get['id']))){
+			if(!empty($itemSaleRepository->findByProduto($get['id']))){
 				$products = $productRepository->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
 			
 				throw new \Exception("Impossível remover, Existem vendas com esse produto!");
