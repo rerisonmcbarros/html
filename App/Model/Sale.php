@@ -81,9 +81,9 @@ class Sale extends Model
 	public function addItem(Product $product, $quantity)
 	{
 		$itemSale = new ItemSale();
-		$itemSale->id_produto;
-		$itemSale->item_preco;
-		$itemSale->quantidade;
+		$itemSale->id_produto = $product->id;
+		$itemSale->item_preco = $product->preco_venda;
+		$itemSale->quantidade = $quantity;
 
 		$this->items[] = $itemSale;
 	}
