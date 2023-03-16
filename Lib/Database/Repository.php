@@ -4,7 +4,7 @@ namespace Lib\Database;
 
 use \Lib\Database\Transaction;
 
-class Mapper 
+class Repository 
 {
     protected $model;
 
