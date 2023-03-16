@@ -7,15 +7,17 @@ use \Lib\Database\Transaction;
 class Repository 
 {
     protected $model;
+	protected $entity;
 
-    public function __construct( ModelInterface $model )
+    public function __construct( ModelInterface $model, string $entity )
     {
         $this->model = $model;
+		$this->entity = $entity;
     }
 
 	protected function getEntity()
     {
-		return $this->model->getEntity();
+		return $this->entity;
 	}
 
 	public function getData()
