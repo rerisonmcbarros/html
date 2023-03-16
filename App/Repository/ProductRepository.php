@@ -3,14 +3,14 @@
 namespace App\Repository;
 
 use App\Model\Product;
-use Lib\Database\Mapper;
+use Lib\Database\Repository;
 use Lib\Database\Transaction;
 
-class ProductRepository extends Mapper
+class ProductRepository extends Repository
 {
 	public function __construct()
 	{
-		parent::__construct( new Product() );
+		parent::__construct(new Product(), 'produto');
 	}
 
 	public function findByCodigo( string $codigo, string $columns = '*' )
