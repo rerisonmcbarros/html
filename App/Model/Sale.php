@@ -2,14 +2,15 @@
 
 namespace App\Model;
 
-use \Lib\Database\Record;
-use \Lib\Database\Transaction;
+class Sale extends Model
+{ 	
+	private $items;
 
-class Sale extends Record{
+	public function __construct()
+	{
+		$this->items = [];
+	}
 
-	public  const TABLE_NAME = 'venda';
-
-	
 	public function setNomeCliente($nome_cliente){
 
 		if($nome_cliente === null || $nome_cliente === ''){
@@ -72,87 +73,22 @@ class Sale extends Record{
 		$this->data["pagamento"] = $pagamento;
 	}
 
-	public function findByDate($data_inicial, $data_final, $limit = null, $offset = 0){
-
-		if($limit == null){
-
-			$limit = $this->getLastId();
-		}
-
-		try{
-
-			$conn = Transaction::get();
-
-			$query = "SELECT * FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final) LIMIT :limit OFFSET :offset";
-
-			$stmt = $conn->prepare($query);
-
-			$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
-			$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
-			$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
-			$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
-
-			$stmt->execute();
-
-			Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]) );
-
-			return $stmt->fetchAll(\PDO::FETCH_CLASS , get_class($this));
-		}
-		catch(\PDOException $e){
-
-			return $e->getMessage();
-		}
-
-	}
-	
-	public function findByDateCount($data_inicial, $data_final){
-
-		try{
-
-			$conn = Transaction::get();
-
-			$query = "SELECT count(id) as total_results_period FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final)";
-
-			$stmt = $conn->prepare($query);
-
-			$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
-			$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
-
-			$stmt->execute();
-
-			Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]) );
-
-			return $stmt->fetch(\PDO::FETCH_ASSOC)['total_results_period'] ?? null;
-		}
-		catch(\PDOException $e){
-
-			return $e->getMessage();
-		}
+	public function setTotalWithDiscount()
+	{
+		$this->data['valor_total'] = $this->valor_total - ($this->valor_total*($this->desconto/100));
 	}
 
-	public function getValorTotalByDate($data_inicial, $data_final){
+	public function addItem(Product $product, $quantity)
+	{
+		$itemSale = new ItemSale();
+		$itemSale->id_produto;
+		$itemSale->item_preco;
+		$itemSale->quantidade;
 
-		try{
-
-			$conn = Transaction::get();
-
-			$query = "SELECT sum(valor_total) as valor_total_periodo FROM ".self::TABLE_NAME." WHERE date(data_venda) >= date(:data_inicial) AND date(data_venda) <= date(:data_final)";
-
-			$stmt = $conn->prepare($query);
-
-			$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
-			$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
-
-			$stmt->execute();
-
-			Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]) );
-
-			return $stmt->fetch(\PDO::FETCH_ASSOC)['valor_total_periodo'] ?? null;
-		}
-		catch(\PDOException $e){
-
-			return $e->getMessage();
-		}
+		$this->items[] = $itemSale;
 	}
-	
+	public function getItems()
+	{
+		return $this->items;
+	}
 }
