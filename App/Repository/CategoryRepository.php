@@ -3,14 +3,14 @@
 namespace App\Repository;
 
 use App\Model\Category;
-use Lib\Database\Mapper;
+use Lib\Database\Repository;
 use Lib\Database\Transaction;
 
-class CategoryRepository extends Mapper
+class CategoryRepository extends Repository
 {
 	public function __construct()
 	{
-		parent::__construct( new Category() );
+		parent::__construct(new Category(), 'categoria');
 	}
 
 	public function findByCodigo( $codigo, $columns = '*' )
