@@ -2,24 +2,21 @@
 
 namespace App\Controller;
 
-use \Lib\Core\Request;
-use \Lib\Core\Session;
-use \Lib\Database\Record;
 use \Lib\Database\Transaction;
 use \Lib\Log\LoggerTXT;
 use \Lib\Utilities\Paginator;
-use \App\Model\Product;
 use \App\Model\Cart;
 use \App\Model\CartItem;
 use \App\Model\ItemSale;
 use \App\Model\Sale;
 use \App\View\Engine;
 use \App\Controller\Controller;
+use App\Repository\ItemSaleRepository;
+use App\Repository\ProductRepository;
+use App\Repository\SaleRepository;
 
-
-class SaleController extends Controller{
-	
-
+class SaleController extends Controller
+{
 	public function index(){
 		
 		try{
@@ -56,7 +53,7 @@ class SaleController extends Controller{
 
 			$cart = new Cart();
 
-			$product = new Product();
+			$productRepository = new ProductRepository();
 
 			if(empty($post["codigo"])){
 
@@ -68,7 +65,7 @@ class SaleController extends Controller{
 				throw new \Exception("O campo quantidade não pode ser vazio!");
 			}
 
-			$product = $product->findByCodigo($post['codigo']);
+			$product = $productRepository->findByCodigo($post['codigo']);
 
 			if(empty($product)){
 
@@ -170,8 +167,6 @@ class SaleController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
-			
 			$cart = new Cart();
 		
 			Transaction::close();
@@ -201,7 +196,6 @@ class SaleController extends Controller{
 			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
 			
 			$cart = new Cart();
-
 			$sale = new Sale();
 
 			if(empty($cart->getCartItems())){
@@ -209,27 +203,21 @@ class SaleController extends Controller{
 				throw new \Exception("Venda não registrada! Carinho vazio!");
 			}
 
-			$sale->nome_cliente = $post['nome_cliente'];
-			$sale->desconto = $post['desconto'];
-			$sale->valor_total = $cart->getTotal() -($cart->getTotal() * ($post['desconto']/100));
-			$sale->pagamento = $post['pagamento'];
-
-			$sale->store();
+			$post['valor_total'] = $cart->getTotal();
+			$sale->setData($post);
+			$sale->setTotalWithDiscount();
 
 			foreach ($cart->getCartItems() as $item) {
-				
-				$saleItem = new ItemSale();
+				$sale->addItem($item->getProduct(), $item->getQuantity());
+			}
 
-				$saleItem->id_venda = $sale->id;
-				$saleItem->id_produto = $item->getProduct()->id;
-				$saleItem->item_preco = $item->getProduct()->preco_venda;
-				$saleItem->quantidade = $item->getQuantity();
+			$saleRepository = new SaleRepository();
+			$saleRepository->store($sale);
 
-				$item->getProduct()->estoque -= $item->getQuantity();
-
-				$item->getProduct()->store();
-
-				$saleItem->store();
+			foreach ($sale->getItems() as $item) {
+				$productRepository = new ProductRepository();
+				$product = $productRepository->find($item->id_produto);
+				$product->reduceStorage($item->quantidade);
 			}
 			
 			$message = $this->message->success("Venda registrada com sucesso!");
@@ -260,13 +248,13 @@ class SaleController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$sale = new Sale();
+			$saleRepository = new SaleRepository ();
 
-			$paginator = new Paginator($sale->count(), 15);
+			$paginator = new Paginator($saleRepository->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
-			$sales = $sale->all($paginator->getLimit(), $paginator->getOffset());
+			$sales = $saleRepository->all($paginator->getLimit(), $paginator->getOffset());
 			
 			Transaction::close();
 		}
@@ -289,7 +277,6 @@ class SaleController extends Controller{
 
 	public function findByDate(){
 
-
 		try{
 
 			Transaction::open(DB_CONFIG);
@@ -297,7 +284,7 @@ class SaleController extends Controller{
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 			
-			$sale = new Sale();
+			$saleRepository = new SaleRepository();
 
 			if(empty($get['data_inicial'])){
 
@@ -309,17 +296,17 @@ class SaleController extends Controller{
 				throw new \Exception("O campo data final não pode ser vazio!");
 			}
 
-			$totalResults = $sale->findByDateCount($get['data_inicial'], $get['data_final']);
+			$totalResults = $saleRepository->findByDateCount($get['data_inicial'], $get['data_final']);
 			$paginator = new Paginator($totalResults, 15);
 
 			$paginator->setNumberLinks(5);
 
-			$sales = $sale->findByDate(
+			$sales = $saleRepository->findByDate(
 				$get['data_inicial'], $get['data_final'], 
 				$paginator->getLimit(), $paginator->getOffset()
 			);
 			
-			$valorPeriodo = $sale->getValorTotalByDate($get['data_inicial'], $get['data_final']);
+			$valorPeriodo = $saleRepository->getValorTotalByDate($get['data_inicial'], $get['data_final']);
 
 			if(empty($totalResults)){
 
@@ -351,7 +338,6 @@ class SaleController extends Controller{
 
 	public function getSaleDetails(){
 
-
 		try{
 
 			Transaction::open(DB_CONFIG);
@@ -359,11 +345,12 @@ class SaleController extends Controller{
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-			$sale = (new Sale())->find( $get['id'] );
+			$saleRepository = new SaleRepository();
+			$sale = $saleRepository->find( $get['id'] );
 
-			$itemSale = new ItemSale();
+			$itemSaleRepository = new ItemSaleRepository();
 
-			$itemsSale = $itemSale->findItemsByVenda($get['id']);
+			$itemsSale = $itemSaleRepository->findItemsByVenda($get['id']);
 
 			$totalValue  = 0;
 
