@@ -2,20 +2,18 @@
 
 namespace App\Controller;
 
-use \Lib\Core\Request;
-use \Lib\Database\Record;
 use \Lib\Database\Transaction;
 use \Lib\Log\LoggerTXT;
 use \Lib\Utilities\Paginator;
 use \App\Model\Category;
 use \App\Model\Product;
 use \App\View\Engine;
-
 use \App\Controller\Controller;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 
-class CategoryController extends Controller{
-	
-	
+class CategoryController extends Controller
+{	
 	public function list(){
 
 		try{
@@ -23,11 +21,11 @@ class CategoryController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$category = new Category();
-			$paginator = new Paginator($category->count(),15);
+			$categoryRepository = new CategoryRepository();
+			$paginator = new Paginator($categoryRepository->count(),15);
 			$paginator->setNumberLinks(5);
 
-			$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
+			$categories = $categoryRepository->all($paginator->getLimit(), $paginator->getOffset());
 
 			Transaction::close();
 		}
@@ -54,14 +52,12 @@ class CategoryController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$category = new Category();
+			$categoryRepository = new CategoryRepository();
 		
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
-			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
-
+		
 			if(!empty($get['id'])){
-
-				$category = $category->find($get['id']);
+				$category = $categoryRepository->find($get['id']);
 			}
 		
 			Transaction::close();
@@ -75,7 +71,7 @@ class CategoryController extends Controller{
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
 		echo $engine->render("categoria-form", [
-		'category' => $category,
+		'category' => ($category ?? null),
 		'message' => ($message ?? '')
 		]);	
 	}
@@ -87,22 +83,21 @@ class CategoryController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$category= new Category();
+			$categoryRepository = new CategoryRepository();
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-			$category = $category->find($get['id']);
+			$category = $categoryRepository->find($get['id']);
 
 			if(empty($category)){
-
-				throw new \Exception("Categoria não encontrado!");		
+				throw new \Exception("Categoria não encontrada!");		
 			}	
 				
 			$post['codigo'] = $category->codigo;
 			$category->setData($post);
 			
-			$category->store();
+			$categoryRepository->store($category);
 
 			$message = $this->message->success("Categoria atualizada com sucesso!");
 
@@ -129,32 +124,32 @@ class CategoryController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$category = new Category();
+			$categoryRepository = new CategoryRepository();
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-			$paginator = new Paginator($category->count(),15);
+			$paginator = new Paginator($categoryRepository->count(),15);
 			$paginator->setNumberLinks(5);
 
-			$finded = $category->find($get['id']);
+			$finded = $categoryRepository->find($get['id']);
 
 			if(!empty($finded)){
 
-				$products = (new Product())->findByCategoria($finded->nome);
+				$products = (new ProductRepository())->findByCategoria($finded->nome);
 			}
 
 			if(!empty($products)){
 
-				$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
+				$categories = $categoryRepository->all($paginator->getLimit(), $paginator->getOffset());
 
 				throw new \Exception("Impossível remover, há Produtos com essa categoria!");
 			}
 
-			$category->delete($get['id']);
+			$categoryRepository->delete($get['id']);
 
 			$message = $this->message->success("Categoria removida com sucesso!");
 
-			$categories = $category->all($paginator->getLimit(), $paginator->getOffset());
+			$categories = $categoryRepository->all($paginator->getLimit(), $paginator->getOffset());
 
 			Transaction::close();
 		}
@@ -181,20 +176,21 @@ class CategoryController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$category = new Category();
+			$categoryRepository = new CategoryRepository();
 
 			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
 					
-			$finded = $category->findByCodigo($post['codigo']);
+			$finded = $categoryRepository->findByCodigo($post['codigo']);
 
 			if(!empty($finded)){
 
 				throw new \Exception("A Categoria informada já existe!");
 			}
 
+			$category = new Category();
 			$category->setData($post);
 
-			$category->store(); 
+			$categoryRepository->store($category); 
 
 			$message = $this->message->success("Categoria '{$category->nome}' Cadastrada com sucesso!");	
 
