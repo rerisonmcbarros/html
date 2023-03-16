@@ -49,9 +49,4 @@ class Model implements ModelInterface
     {
 		return $this->data;
 	}
-
-	public function getEntity(): string
-	{
-		return get_class($this)::$entity;
-	}
 }
