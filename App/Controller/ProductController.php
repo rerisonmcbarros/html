@@ -2,51 +2,39 @@
 
 namespace App\Controller;
 
-use \Lib\Core\Request;
-use \Lib\Database\Record;
 use \Lib\Database\Transaction;
 use \Lib\Log\LoggerTXT;
-use \Lib\Core\Uploader;
 use \Lib\Utilities\Paginator;
-use \App\Model\Category;
 use \App\Model\Product;
-use \App\Model\ImageProduct;
 use \App\Model\ItemSale;
 use \App\Model\Cart;
-use \App\Model\CartItem;
 use \App\View\Engine;
-
 use \App\Controller\Controller;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 
-class ProductController extends Controller{
-	
-
-	public function list(){
-
-		try{
-			
+class ProductController extends Controller
+{
+	public function list()
+	{
+		try{	
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
 			if(isset($get['categoria'])){
-
-				if(isset($get["remove"])){
-
-				}
 				$this->findByCategory();
 				return;
 			}
 
-			$product = new Product();
+			$productRepository = new ProductRepository();
 
-			$paginator = new Paginator($product->count(), 15);
+			$paginator = new Paginator($productRepository->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
-			$products = $product->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
-
+			$products = $productRepository->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
 
 			Transaction::close();	
 		}
@@ -55,10 +43,6 @@ class ProductController extends Controller{
 			Transaction::rollBack();
 			$message = $this->message->error( $e->getMessage());
 		}
-
-		//return json_encode($products);
-
-		
 		$engine = new Engine(__DIR__."/../public/html/");
 
 		echo $engine->render("produto-list", [
@@ -68,7 +52,6 @@ class ProductController extends Controller{
 		'products' => $products,
 		'message'  => ($message ?? '')
 		]);	
-		
 	}
 
 	public function form(){
@@ -78,15 +61,15 @@ class ProductController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$product = new Product();
-			$category = new Category();
-			$categories = $category->all();
+			$productRepository = new ProductRepository();
+			$categoryRepository = new CategoryRepository();
+			$categories = $categoryRepository->all();
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 			
 			if(!empty($get['id'])){
 
-				$product = $product->find($get['id']);
+				$product = $productRepository->find($get['id']);
 			}
 
 			Transaction::close();
@@ -101,7 +84,7 @@ class ProductController extends Controller{
 
 		echo $engine->render("produto-form", [
 		'categories' => $categories,
-		'product' => $product,
+		'product' => ($product ?? null),
 		'message' => ($message ?? '')
 		]);	
 	}
@@ -113,32 +96,31 @@ class ProductController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$product = new Product();
+			$productRepository = new ProductRepository();
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
 			$cart = new Cart();
 
-			$paginator = new Paginator($product->count(), 15);
+			$paginator = new Paginator($productRepository->count(), 15);
 
 			$paginator->setNumberLinks(5);
 
-			$products = $product->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
-			
-
 			if(!empty($cart->getCartItems() )){	
-
+				$products = $productRepository->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
+			
 				throw new \Exception("Impossível remover Produto com Carrinho de Compras cheio!");
 			}
 
 			$itemSale = new ItemSale();
 
 			if(!empty($itemSale->findByProduto($get['id']))){
-
+				$products = $productRepository->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
+			
 				throw new \Exception("Impossível remover, Existem vendas com esse produto!");
 			}
 
-			$product->delete($get['id']);
+			$productRepository->delete($get['id']);
 			/*
 			$imageProduct = new ImageProduct();
 
@@ -151,11 +133,8 @@ class ProductController extends Controller{
 				}
 			}
 			*/
-			$paginator = new Paginator($product->count(), 15);
-
-			$paginator->setNumberLinks(5);
-
-			$products = $product->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
+	
+			$products = $productRepository->getProdutoCategoria($paginator->getLimit(), $paginator->getOffset());
 
 			$message = $this->message->success("Produto removido com sucesso!");	
 
@@ -184,12 +163,13 @@ class ProductController extends Controller{
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
 			$product = new Product();
-			$category = new Category();
-			$categories = $category->all();
+			$productRepository = new ProductRepository();
+			$categoryRepository = new CategoryRepository();
+			$categories = $categoryRepository->all();
 
 			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
 					
-			$finded = $product->findByCodigo($post['codigo']);
+			$finded = $productRepository->findByCodigo($post['codigo']);
 
 			if(!empty($finded)){
 
@@ -198,7 +178,7 @@ class ProductController extends Controller{
 
 			$product->setData($post);
 
-			$product->store(); 
+			$productRepository->store($product); 
 
 			//UPLOAD DE IMAGENS DO PRODUTO//
 			/*
@@ -256,14 +236,14 @@ class ProductController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$product = new Product();
-			$category = new Category();
-			$categories = $category->all();
+			$productRepository = new ProductRepository();
+			$categoryRepository = new CategoryRepository();
+			$categories = $categoryRepository->all();
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
 
-			$product = $product->find($get['id']);
+			$product = $productRepository->find($get['id']);
 		
 			if(empty($product)){
 
@@ -281,7 +261,7 @@ class ProductController extends Controller{
 
 			$product->setData($post);
 			
-			$product->store();
+			$productRepository->store($product);
 
 			$message = $this->message->success("Produto atualizado com sucesso!");	
 	
@@ -309,12 +289,11 @@ class ProductController extends Controller{
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
-			$product = new Product();
-			$products = $product->getProdutoCategoria();
+			$productRepository = new ProductRepository();
+			$products = $productRepository->getProdutoCategoria();
 
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
-			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
-
+		
 			if($get['categoria'] === null || $get === ''){	
 
 				throw new \Exception("O Campo Categoria não pode estar vazio!");
@@ -322,18 +301,18 @@ class ProductController extends Controller{
 
 			$category = $get['categoria'];
 
-			$paginator = new Paginator($product->findByCategoriaCount($category),15);
+			$paginator = new Paginator($productRepository->findByCategoriaCount($category),15);
 
 			$paginator->setNumberLinks(5);
 
-			if(empty($product->findByCategoria($category)) ){
+			if(empty($productRepository->findByCategoria($category)) ){
 
-				$products = $product->findByCategoria($category, $paginator->getLimit(), $paginator->getOffset());
+				$products = $productRepository->findByCategoria($category, $paginator->getLimit(), $paginator->getOffset());
 
 				throw new \Exception("Nenhum Produto encontrado com a categoria '{$category}'!");
 			}
 
-			$products = $product->findByCategoria($category, $paginator->getLimit(), $paginator->getOffset());
+			$products = $productRepository->findByCategoria($category, $paginator->getLimit(), $paginator->getOffset());
 			
 			$message = $this->message->success("Produtos encontrados na categoria '{$category}'");	
 
@@ -351,9 +330,6 @@ class ProductController extends Controller{
 		'links'  => isset($paginator) ? $paginator->links() : null,
 		'products' => $products,
 		'message' => ($message ?? '')	
-		]);	
-		
+		]);		
 	}
-
-
 }
