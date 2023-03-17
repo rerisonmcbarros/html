@@ -3,9 +3,7 @@
 namespace App\Model;
 
 class Category extends Model
-{	
-	public static $entity = 'categoria';
-
+{
 	public function setCodigo( string $codigo )
 	{
 		if( $codigo === null || $codigo === '' )
