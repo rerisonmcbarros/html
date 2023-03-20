@@ -1,41 +1,37 @@
 <?php
 
-namespace Lib\Core;
+namespace Lib\Utilities;
 
-
-class Uploader{
-	
-
+class Uploader
+{
 	private $data;
 	private $path;
 
 	private $allowedTypes;
 
-	public function __construct($file, bool $multiple){
-
-		if($multiple == true){
+	public function __construct($file, bool $multiple)
+	{
+		if ($multiple == true) {
 
 			$this->setMultiple($file);
-		}
-		else{
+		} else {
 
 			$this->setSingle($file);
 		}
-
 	}
 
-	public function setAllowedTypes(array $types){
-
+	public function setAllowedTypes(array $types)
+	{
 		$this->allowedTypes = $types;
 	}
 
-	private function setMultiple($files){
-
+	private function setMultiple($files)
+	{
 		$file = [];
 
-		if(!empty($files['name'][0])){
+		if (!empty($files['name'][0])) {
 
-			foreach($files['name'] as $index => $name){
+			foreach ($files['name'] as $index => $name) {
 
 				$file['name'] = $name;
 				$file['full_path'] = $files['full_path'][$index];
@@ -53,10 +49,9 @@ class Uploader{
 		}
 	}
 
-
-	private function setSingle($file){
-
-		if(!empty($file['name'])){
+	private function setSingle($file)
+	{
+		if (!empty($file['name'])) {
 
 			$file['type'] = strtolower($file['type']);
 			$extension = ".".pathinfo($file['name'], PATHINFO_EXTENSION) ?? "";
@@ -68,44 +63,43 @@ class Uploader{
 		}
 	}
 
-	private function fileVerify($file){
-
-		if($file['error'] == 1){
+	private function fileVerify($file)
+	{
+		if ($file['error'] == 1) {
 
 			throw new \Exception("Erro! o arquivo excedeu o limite de 2MB");
 		}
 
-		if(!empty($this->allowedTypes)){
+		if (!empty($this->allowedTypes)) {
 
-			if(!in_array($file['type'], $this->allowedTypes)){
+			if (!in_array($file['type'], $this->allowedTypes)) {
 
 				throw new \Exception("Tipo de arquivo não permitido!");
 			}
 		}
 	}
 
-	public function moveUploadedFile(){
+	public function moveUploadedFile()
+	{
+		if (!empty($this->data)) {
 
-		if(!empty($this->data)){
-
-			foreach($this->data  as $file){
+			foreach ($this->data  as $file) {
 
 				move_uploaded_file($file['tmp_name'], $this->path.$file['new_name']);
 			}
 		}	
 	}
 
-	public function setPath(string $path){
-
+	public function setPath(string $path)
+	{
 		$this->path = $path;
 	}
 
-	public function files(){
-
-		if(!empty($this->data)){
+	public function files()
+	{
+		if (!empty($this->data)) {
 
 			return $this->data;
 		}
 	}
-
 }
