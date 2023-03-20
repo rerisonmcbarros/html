@@ -1,54 +1,51 @@
 <?php
 
-namespace Lib\Core;
+namespace Lib\Utilities;
 
-class Message{
-
+class Message
+{
 	private $message;
 	private $type;
 
-
-	public function __toString(){
-
+	public function __toString()
+	{
 		return $this->dump();
 	}
 
-	public function success($message){
-
+	public function success($message)
+	{
 		$this->type = "alert alert-success";
 		$this->message = $message;
 
 		return $this;
 	}
 
-	public function error($message){
-
+	public function error($message)
+	{
 		$this->type = "alert alert-danger";
 		$this->message = $message;
 
 		return $this;
 	}
 
-	public function warning($message){
-
+	public function warning($message)
+	{
 		$this->type = "alert alert-warning";
 		$this->message = $message;
 
 		return $this;
 	} 
 
-	public function info($message){
-
+	public function info($message)
+	{
 		$this->type = "alert alert-primary ";
 		$this->message = $message;
 
 		return $this;
 	}
 
-
-	private function dump(){
-
+	private function dump()
+	{
 		return "<div class='{$this->type}' role='alert'>{$this->message}</div>";
 	}
 }
-
