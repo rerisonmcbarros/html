@@ -2,16 +2,20 @@
 
 namespace Lib\Database;
 
-class Connect{
-	
+use \PDO;
+use \Exception;
+use \PDOException;
+
+class Connect
+{	
 	private static $connection;
 
 	private function __construct(){}
 	private function __clone(){}
 
-	public static function start(array $db_config){
-
-		try{
+	public static function start(array $db_config)
+	{
+		try {
 
 			$drive    = !empty($db_config["DB_DRIVE"])  ? $db_config["DB_DRIVE"]  : null;
 			$host     = !empty($db_config["DB_HOST"])   ? $db_config["DB_HOST"]   : null;
@@ -20,33 +24,28 @@ class Connect{
 			$user 	  = !empty($db_config["DB_USER"])   ? $db_config["DB_USER"]   : null;
 			$password = !empty($db_config["DB_PASSWD"]) ? $db_config["DB_PASSWD"] : null;
 
-			switch ($drive){
+			switch ($drive) {
 
 				case 'mysql':
 
-					self::$connection = new \PDO("mysql:host={$host};port={$port};dbname={$name}",
+					self::$connection = new PDO("mysql:host={$host};port={$port};dbname={$name}",
 						$user,
 						$password,
-						[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
+						[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 					);
 					break;
 
 				default:
 
-					throw new \Exception("Database not Implemented!");
+					throw new Exception("Database not Implemented!");
 					break;
 			}
 
 			return self::$connection;
-
-		}
-		catch(\PDOException $e){
+			
+		} catch (PDOException $e) {
 
 			return "{$e->getMessage()} - {$e->getFile()} - {$e->getLine()}";
 		}
-
 	}
-
 }
-
-

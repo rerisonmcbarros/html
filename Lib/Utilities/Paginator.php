@@ -2,9 +2,8 @@
 
 namespace Lib\Utilities;
 
-
-class Paginator{
-
+class Paginator
+{
 	private const STYLE_LINKS = 'page-link';
 	private $url;
 	private $limit;
@@ -16,8 +15,8 @@ class Paginator{
 
 	private $totalResults;
 
-	public function __construct($totalResults, $limit){
-
+	public function __construct($totalResults, $limit)
+	{
 		$this->totalResults = $totalResults ?? 0;
 		$this->url = $this->setUrl();
 		$this->limit = $limit;
@@ -26,24 +25,24 @@ class Paginator{
 		$this->setNumberPages(); 
 	}
 
-	public function getLimit(){
-
+	public function getLimit()
+	{
 		return $this->limit;
 	}
 
-	public function getOffset(){
-
+	public function getOffset()
+	{
 		return $this->offset;
 	}
 
-	private function getCurrentPage(){
-
+	private function getCurrentPage()
+	{
 		return filter_input(INPUT_GET, "page", FILTER_DEFAULT) ?? 1;
 	}
 
-	private function setNumberPages(){
-
-		if($this->totalResults <= $this->limit){
+	private function setNumberPages()
+	{
+		if ($this->totalResults <= $this->limit) {
 
 			$this->numberPages = 1;
 		}
@@ -51,25 +50,25 @@ class Paginator{
 		$this->numberPages = ceil($this->totalResults/$this->limit);
 	}
 
-	public function setNumberLinks($number){
-
+	public function setNumberLinks($number)
+	{
 		$this->numberLinks = $number;
 	}
 
-	public function links(){
-
+	public function links()
+	{
 		$linksAround = floor($this->numberLinks/2);
 
 		$start = $this->currentPage-$linksAround;
 		$end = $this->currentPage+$linksAround;
 
-		if($start <= 1){
+		if ($start <= 1) {
 
 			$start = 1;	
 			$end = $start + ($linksAround*2);
 		}
 
-		if($end >= $this->numberPages){
+		if ($end >= $this->numberPages) {
 
 			$start = $this->numberPages - ($linksAround*2);
 			$end = $this->numberPages;
@@ -81,13 +80,12 @@ class Paginator{
 
 		for ($i=$start; $i <= $end; $i++) { 
 	
-			if($i == $this->currentPage){
+			if ($i == $this->currentPage) {
 
 				$template.= "<span class=\"".self::STYLE_LINKS." active\" >{$i}</span>";
-			}
-			else{
+			} else {
 
-				if($i >= 1 && $i <= $this->numberPages){
+				if ($i >= 1 && $i <= $this->numberPages) {
 
 					$template.= "<a class=\"".self::STYLE_LINKS."\" href=\"{$this->url}{$i}\">{$i}</a>";
 				}
@@ -100,9 +98,9 @@ class Paginator{
 		return $template;
 	}
 
-	private function getNextPage(){
-
-		if($this->currentPage >= $this->numberPages){
+	private function getNextPage()
+	{
+		if ($this->currentPage >= $this->numberPages) {
 
 			return $this->currentPage;
 		}
@@ -110,9 +108,9 @@ class Paginator{
 		return $this->currentPage+1;
 	}
 
-	private function getPreviousPage(){
-
-		if($this->currentPage <= 1){
+	private function getPreviousPage()
+	{
+		if ($this->currentPage <= 1) {
 
 			return $this->currentPage;
 		}
@@ -120,29 +118,26 @@ class Paginator{
 		return $this->currentPage-1;
 	}
 
-	private function setUrl(){
-
+	private function setUrl()
+	{
 		$url = filter_input(INPUT_SERVER, "REQUEST_URI");
 
-		if(strpos($url,'?') === false){
+		if (strpos($url,'?') === false) {
 
 			$url= $url."?page=";
-		}
-		else{
+		} else {
 
-			if(strstr($url,'&page=') !== false ){
+			if (strstr($url,'&page=') !== false) {
 
 				$url = strstr($url,'&page=', true);
-
 				$url = $url."&page=";
-			}
-			elseif(strstr($url,'?page=') !== false ){
+
+			} elseif (strstr($url,'?page=') !== false) {
 
 				$url = strstr($url,'?page=', true);
-
 				$url = $url."?page=";
-			}
-			else{
+
+			} else {
 
 				$url= $url."&page=";
 			}	

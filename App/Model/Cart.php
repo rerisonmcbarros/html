@@ -2,51 +2,52 @@
 
 namespace App\Model;
 
-use \Lib\Core\Session;
+use \Exception;
+use Lib\Core\Session;
 
-class Cart{
-	
+class Cart
+{	
 	private $items;
 	private $session;
 
-	public function __construct(){
-
+	public function __construct()
+	{
 		$this->session = new Session();
 		$this->items = $this->restore();
 	}
 
-	public function __destruct(){
-
-		$this->session->add('cart', serialize($this->items) );
+	public function __destruct()
+	{
+		$this->session->add('cart', serialize($this->items));
 	}
 
-	private function restore(){
-
+	private function restore()
+	{
 		return isset($this->session->cart) ? unserialize($this->session->cart) : [];
 	}
 
-	public function add(CartItem $item){
-
+	public function add(CartItem $item)
+	{
 		$id = $item->getProduct()->id;
 
-		if($item->getProduct()->estoque < $item->getQuantity()){
+		if ($item->getProduct()->estoque < $item->getQuantity()) {
 
-			throw new \Exception("Estoque de '{$item->getProduct()->descricao}' é insuficiente!");
+			throw new Exception("Estoque de '{$item->getProduct()->descricao}' é insuficiente!");
 		}
 
 		$this->items[$id] = $item;	
 	}
 
-	public function delete($id){
-
-		if(isset($this->items[$id])){
+	public function delete($id)
+	{
+		if (isset($this->items[$id])) {
 
 			unset($this->items[$id]);
 		}
 	}
 
-	public function getTotal(){
-
+	public function getTotal()
+	{
 		$total = 0;
 
 		foreach ($this->items as $item) {
@@ -57,17 +58,14 @@ class Cart{
 		return $total;
 	}
 
-	public function getCartItems(){
-
+	public function getCartItems()
+	{
 		return $this->items;
 	}
 
-	public function reset(){
-
+	public function reset()
+	{
 		$this->session->destroy();
 		$this->items = $this->restore();
-	}
-
-	
-	
+	}	
 }

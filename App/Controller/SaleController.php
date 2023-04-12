@@ -2,24 +2,24 @@
 
 namespace App\Controller;
 
-use \Lib\Database\Transaction;
-use \Lib\Log\LoggerTXT;
-use \Lib\Utilities\Paginator;
-use \App\Model\Cart;
-use \App\Model\CartItem;
-use \App\Model\ItemSale;
-use \App\Model\Sale;
-use \App\View\Engine;
-use \App\Controller\Controller;
+use \Exception;
+use Lib\Database\Transaction;
+use Lib\Log\LoggerTXT;
+use Lib\Utilities\Paginator;
+use App\Model\Cart;
+use App\Model\CartItem;
+use App\Model\Sale;
+use App\View\Engine;
+use App\Controller\Controller;
 use App\Repository\ItemSaleRepository;
 use App\Repository\ProductRepository;
 use App\Repository\SaleRepository;
 
 class SaleController extends Controller
 {
-	public function index(){
-		
-		try{
+	public function index()
+	{	
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -27,27 +27,30 @@ class SaleController extends Controller
 			$cart = new Cart();
 
 			Transaction::close();
-		}
-		catch(\Exception $e){
+
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
+
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-cart", [
-		'cart' => ($cart ?? []),
-		'message' => ($message ?? '')	
-		]);	
+		echo $engine->render(
+			"venda-cart", 
+			[
+				'cart' => ($cart ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-	public function addCartItem(){
-
-		try{
+	public function addCartItem()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
-
 			
 			$post = filter_var_array($this->request->post(), FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -55,21 +58,21 @@ class SaleController extends Controller
 
 			$productRepository = new ProductRepository();
 
-			if(empty($post["codigo"])){
+			if (empty($post["codigo"])) {
 
-				throw new \Exception("O campo código do produto não pode ser vazio!");
+				throw new Exception("O campo código do produto não pode ser vazio!");
 			}
 
-			if(empty($post["quantidade"]) || $post["quantidade"] <= 0){
+			if (empty($post["quantidade"]) || $post["quantidade"] <= 0) {
 
-				throw new \Exception("O campo quantidade não pode ser vazio!");
+				throw new Exception("O campo quantidade não pode ser vazio!");
 			}
 
 			$product = $productRepository->findByCodigo($post['codigo']);
 
-			if(empty($product)){
+			if (empty($product)) {
 
-				throw new \Exception("Produto não encontrado em estoque!");
+				throw new Exception("Produto não encontrado em estoque!");
 			}
 
 			$cartItem = new CartItem($product, $post["quantidade"]);
@@ -78,25 +81,26 @@ class SaleController extends Controller
 
 			Transaction::close();
 
-		}
-		catch(\Exception $e){
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-cart", [
-		'cart' => ($cart ?? []),
-		'message' => ($message ?? '')	
-		]);	
+		echo $engine->render(
+			"venda-cart", 
+			[
+				'cart' => ($cart ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-
-	public function deleteCartItem(){
-
-		try{
+	public function deleteCartItem()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -109,60 +113,62 @@ class SaleController extends Controller
 
 			Transaction::close();
 
-		}
-		catch(\Exception $e){
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-cart", [
-		'cart' => ($cart ?? []),
-		'message' => ($message ?? '')	
-		]);	
-
+		echo $engine->render(
+			"venda-cart", 
+			[
+				'cart' => ($cart ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-	public function setCartEmpty(){
-
-		try{
+	public function setCartEmpty()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
 
 			$cart = new Cart();
 
-			if(!empty($cart)){
+			if (!empty($cart)) {
 
-				foreach($cart->getCartItems() as $item => $value){
-
+				foreach ($cart->getCartItems() as $item) {
 					$cart->delete($item);
 					$cart->reset();
 				}	
 			}
 
 			Transaction::close();
-		}
-		catch(\Exception $e){
+
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-cart", [
-		'cart' => ($cart ?? []),
-		'message' => ($message ?? '')	
-		]);	
-
+		echo $engine->render(
+			"venda-cart",
+			[
+				'cart' => ($cart ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-	public function saleRegisterForm(){
-
-		try{
+	public function saleRegisterForm()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -170,25 +176,27 @@ class SaleController extends Controller
 			$cart = new Cart();
 		
 			Transaction::close();
-		}
-		catch(\Exception $e){
+
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-register", [
-		'cart' => ($cart ?? []),
-		'message' => ($message ?? '')	
-		]);	
-
+		echo $engine->render(
+			"venda-register", 
+			[
+				'cart' => ($cart ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-	public function saleRegisterSave(){
-
-		try{
+	public function saleRegisterSave()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -198,9 +206,9 @@ class SaleController extends Controller
 			$cart = new Cart();
 			$sale = new Sale();
 
-			if(empty($cart->getCartItems())){
+			if (empty($cart->getCartItems())) {
 
-				throw new \Exception("Venda não registrada! Carinho vazio!");
+				throw new Exception("Venda não registrada! Carinho vazio!");
 			}
 
 			$post['valor_total'] = $cart->getTotal();
@@ -226,25 +234,27 @@ class SaleController extends Controller
 			$cart->reset();
 		
 			Transaction::close();
-		}
-		catch(\Exception $e){
+		
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-register", [
-		'cart' => ($cart ?? []),
-		'message' => ($message ?? '')	
-		]);	
-
+		echo $engine->render(
+			"venda-register", 
+			[
+				'cart' => ($cart ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-	public function saleList(){
-
-		try{
+	public function saleList()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -252,33 +262,34 @@ class SaleController extends Controller
 			$saleRepository = new SaleRepository ();
 
 			$paginator = new Paginator($saleRepository->count(), 15);
-
 			$paginator->setNumberLinks(5);
 
 			$sales = $saleRepository->all($paginator->getLimit(), $paginator->getOffset());
 			
 			Transaction::close();
-		}
-		catch(\Exception $e){
+
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 
-		echo $engine->render("venda-list", [
-		'links' => ($paginator->links() ?? null),
-		'valorPeriodo' => null,
-		'sales' => ($sales ?? []),
-		'message' => ($message ?? '')	
-		]);	
-
+		echo $engine->render(
+			"venda-list", 
+			[
+				'links' => ($paginator->links() ?? null),
+				'valorPeriodo' => null,
+				'sales' => ($sales ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-	public function findByDate(){
-
-		try{
+	public function findByDate()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -287,19 +298,19 @@ class SaleController extends Controller
 			
 			$saleRepository = new SaleRepository();
 
-			if(empty($get['data_inicial'])){
+			if (empty($get['data_inicial'])) {
 
-				throw new \Exception("O campo data início não pode ser vazio!");
+				throw new Exception("O campo data início não pode ser vazio!");
 			}
 
-			if(empty($get['data_final'])){
+			if (empty($get['data_final'])) {
 
-				throw new \Exception("O campo data final não pode ser vazio!");
+				throw new Exception("O campo data final não pode ser vazio!");
 			}
 
 			$totalResults = $saleRepository->findByDateCount($get['data_inicial'], $get['data_final']);
+			
 			$paginator = new Paginator($totalResults, 15);
-
 			$paginator->setNumberLinks(5);
 
 			$sales = $saleRepository->findByDate(
@@ -309,37 +320,40 @@ class SaleController extends Controller
 			
 			$valorPeriodo = $saleRepository->getValorTotalByDate($get['data_inicial'], $get['data_final']);
 
-			if(empty($totalResults)){
+			if (empty($totalResults)) {
 
-				throw new \Exception("Nenhuma venda encontrada para o período informado!");
+				throw new Exception("Nenhuma venda encontrada para o período informado!");
 			}
 			
 				
 			$message = $this->message->success(
-				"Vendas encontradas no período de ".date("d/m/Y",strtotime($get['data_inicial']) )." à ".date("d/m/Y",strtotime($get['data_final']) ));
+				"Vendas encontradas no período de ".date("d/m/Y",strtotime($get['data_inicial']) )." à ".date("d/m/Y",strtotime($get['data_final']) )
+			);
 
 			Transaction::close();
-		}
-		catch(\Exception $e){
+			
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 		
-		echo $engine->render("venda-list", [
-		'links' => ($paginator->links() ?? null),
-		'valorPeriodo' => ($valorPeriodo ?? null),
-		'sales' => ($sales ?? []),
-		'message' => ($message ?? '')	
-		]);	
+		echo $engine->render(
+			"venda-list", 
+			[
+				'links' => ($paginator->links() ?? null),
+				'valorPeriodo' => ($valorPeriodo ?? null),
+				'sales' => ($sales ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
 
-
-	public function getSaleDetails(){
-
-		try{
+	public function getSaleDetails()
+	{
+		try {
 
 			Transaction::open(DB_CONFIG);
 			Transaction::setLogger(new LoggerTXT(__DIR__."/../../Lib/Log/log.txt"));
@@ -347,7 +361,7 @@ class SaleController extends Controller
 			$get = filter_var_array($this->request->get(), FILTER_SANITIZE_SPECIAL_CHARS);
 
 			$saleRepository = new SaleRepository();
-			$sale = $saleRepository->find( $get['id'] );
+			$sale = $saleRepository->find($get['id']);
 
 			$itemSaleRepository = new ItemSaleRepository();
 
@@ -361,21 +375,23 @@ class SaleController extends Controller
 			}
 			
 			Transaction::close();
-		}
-		catch(\Exception $e){
+
+		} catch (Exception $e) {
 
 			Transaction::rollBack();
-			$message = $this->message->error( $e->getMessage());
+			$message = $this->message->error($e->getMessage());
 		}
 
 		$engine = new Engine(__DIR__."/../../App/public/html/");
 		
-		echo $engine->render("venda-items-list", [
-		'totalValue' => $totalValue ?? null,
-		'sale' => ($sale ?? []),
-		'itemsSale' => ($itemsSale ?? []),
-		'message' => ($message ?? '')	
-		]);	
+		echo $engine->render(
+			"venda-items-list", 
+			[
+				'totalValue' => ($totalValue ?? null),
+				'sale' => ($sale ?? []),
+				'itemsSale' => ($itemsSale ?? []),
+				'message' => ($message ?? '')	
+			]
+		);	
 	}
-}	
-
+}

@@ -2,71 +2,71 @@
 
 namespace Lib\Database;
 
-use \Lib\Database\Transaction;
+use \PDO;
+use \PDOException;
+use Lib\Database\Transaction;
 
-use \App\Model\Product;
-
-class Record implements \jsonSerializable{
-
+class Record implements \jsonSerializable
+{
 	protected $data;
 
-	public function __set($name, $value){
-
+	public function __set($name, $value)
+	{
 		$value = trim($value);
 
 		$nameMethod = "set".str_replace("_", "", ucwords($name, "_"));
 
-		if(method_exists($this, $nameMethod)){
+		if (method_exists($this, $nameMethod)) {
 
 			call_user_func([$this, $nameMethod], $value);
 		
-		}else{
+		} else {
 
 			$this->data[$name] = $value;
 		}
 	}
 
-	public function __get($name){
-
+	public function __get($name)
+	{
 		return $this->data[$name];
 	}
 
-	public function __isset($name){
-
+	public function __isset($name)
+	{
 		return isset($this->data[$name]);
 	}
 
-	public function toArray(){
-
+	public function toArray()
+	{
 		return $this->data;
 	}
 
-	public function jsonSerialize(){
-
+	public function jsonSerialize()
+	{
 		return $this->data;
 	}
 
-	public function setData(array $data){
-		if(!empty($data))
-		{
-			foreach($data as $key => $value)
-			{
+	public function setData(array $data)
+	{
+		if (!empty($data)) {
+
+			foreach ($data as $key => $value) {
 				$this->$key = $value;
 			}
 		}
 		$this->data = $data;
 	}
 
-	public function getEntity(){
-
+	public function getEntity()
+	{
 		$class = get_class($this);
 
 		return constant($class.'::TABLE_NAME');
 	}
 
-	public function find(int $id, string $columns = '*'){
-
-		try{
+	public function find(int $id, string $columns = '*')
+	{
+		try {
 
 			$conn = Transaction::get();
 
@@ -74,27 +74,25 @@ class Record implements \jsonSerializable{
 
 			$stmt = $conn->prepare($query);
 
-			$stmt->bindValue(":id", $id, \PDO::PARAM_INT);
+			$stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
 			$stmt->execute();
 
 			Transaction::log($this->getQueryLog($query,['id'=> $id]));
 
 			return $stmt->fetchObject(get_class($this));
-		}
-		catch(\PDOException $e){
+		
+		} catch (PDOException $e) {
 
 			return $e->getMessage();
 		}
-
 	}
 
-	public function all($limit = null, $offset = 0, string $columns = '*'){
+	public function all($limit = null, $offset = 0, string $columns = '*')
+	{	
+		try {
 
-		
-		try{
-
-			if($limit == null){
+			if ($limit == null) {
 
 				$limit = $this->getLastId();
 			}
@@ -105,25 +103,25 @@ class Record implements \jsonSerializable{
 
 			$stmt = $conn->prepare($query);
 
-			$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
-			$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
+			$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+			$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 
 			$result = $stmt->execute();
 
 			Transaction::log($this->getQueryLog($query,['limit' => (int)$limit, 'offset' => (int)$offset]));
 
-			return $stmt->fetchAll(\PDO::FETCH_CLASS, get_class($this));
-		}
-		catch(\PDOException $e){
+			return $stmt->fetchAll(PDO::FETCH_CLASS, get_class($this));
+		
+		} catch (PDOException $e) {
 
 			return $e->getMessage();
 
 		}
-
 	}
 
-	public function count(){
-		try{
+	public function count()
+	{
+		try {
 
 			$conn = Transaction::get();
 
@@ -135,10 +133,9 @@ class Record implements \jsonSerializable{
 
 			Transaction::log($query);
 
-			return $stmt->fetch(\PDO::FETCH_ASSOC)['count'];
+			return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
 
-		}
-		catch(\PDOException $e){
+		} catch (PDOException $e) {
 
 			return $e->getMessage();
 		}
@@ -146,7 +143,7 @@ class Record implements \jsonSerializable{
 
 	public function getLastId(){
 
-		try{
+		try {
 
 			$conn = Transaction::get();
 
@@ -158,21 +155,19 @@ class Record implements \jsonSerializable{
 
 			Transaction::log($query);
 
-			return $stmt->fetch(\PDO::FETCH_ASSOC)['last'] ?? 0;
-
-		}
-		catch(\PDOException $e){
+			return $stmt->fetch(PDO::FETCH_ASSOC)['last'] ?? 0;
+		
+		} catch (PDOException $e) {
 
 			return $e->getMessage();
 		}
 	}
 
+	public function store()
+	{
+		try {
 
-	public function store(){
-
-		try{
-
-			if(empty($this->id)){
+			if (empty($this->id)) {
 
 				$this->id = $this->getLastId() + 1;
 
@@ -181,8 +176,7 @@ class Record implements \jsonSerializable{
 			
 				$query = "INSERT INTO {$this->getEntity()} ({$columns}) VALUES ({$values})";
 		
-			}
-			else{
+			} else {
 
 				$set = [];
 				foreach(array_keys($this->data) as $key => $value ){
@@ -197,35 +191,32 @@ class Record implements \jsonSerializable{
 				$query = "UPDATE {$this->getEntity()} SET {$set} WHERE id = :id";	
 			}
 
-
 			$conn = Transaction::get();
 
 			$stmt = $conn->prepare($query);
 
-			foreach($this->data  as $key => $value){
+			foreach ($this->data  as $key => $value) {
 
-				$type = is_int($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR;  
+				$type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;  
 				
 				$stmt->bindValue(":{$key}", $value, $type);
 			}
 
-
 			Transaction::log($this->getQueryLog($query, $this->data));
 
 			return $stmt->execute();
-		}
-		catch(\PDOException $e){
+		
+		} catch (PDOException $e) {
 
-			return var_dump($e);
+			return $e->getMessage();
 		}
-
 	}
 
 	public function delete($id = null){
 
-		try{
+		try {
 
-			if($id == null){
+			if ($id == null) {
 
 				$id = $this->id;
 			}
@@ -236,32 +227,30 @@ class Record implements \jsonSerializable{
 
 			$stmt = $conn->prepare($query);
 
-			$stmt->bindValue(":id", $id, \PDO::PARAM_INT);		
+			$stmt->bindValue(":id", $id, PDO::PARAM_INT);		
 			
-
 			Transaction::log($this->getQueryLog($query, ['id'=>$id]));
 
 			return $stmt->execute();
-		}
-		catch(\PDOException $e){
+		
+		} catch (PDOException $e) {
 
 			return $e->getMessage();
 		}
 	}
 
-	public function getQueryLog(string $query, array $data){
-
+	public function getQueryLog(string $query, array $data)
+	{
 		$queryLog = $query;
 
 		krsort($data);
 
-		foreach($data  as $key => $value){
+		foreach ($data  as $key => $value) {
 
-			if(is_int($value)){
+			if (is_int($value)) {
 
 				$value = $value;
-			}
-			else{
+			} else {
 
 				$value = "'{$value}'";
 			}
@@ -271,9 +260,4 @@ class Record implements \jsonSerializable{
 
 		return $queryLog;
 	}
-
-
-
-
 }
-

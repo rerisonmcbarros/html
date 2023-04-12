@@ -2,59 +2,56 @@
 
 namespace App\Model;
 
-use \App\Model\Product;
+use \Exception;
+use App\Model\Product;
 
-class CartItem{
-	
+class CartItem
+{	
 	private $product;
 	private $quantity;
 
-	public function __construct(Product $product, $quantity){
-
+	public function __construct(Product $product, $quantity)
+	{
 		$this->setProduct($product);
 		$this->setQuantity($quantity);
 	}
 
-	public function setProduct($product){
+	public function setProduct($product)
+	{
+		if (is_null($product)) {
 
-		if(is_null($product)){
-
-			throw new \Exception("O produto não pode ser vazio!");
+			throw new Exception("O produto não pode ser vazio!");
 		}
 
 		$this->product = $product;
-
 	}
 
-	public function setQuantity($quantity){
+	public function setQuantity($quantity)
+	{
+		if (is_null($quantity) || $quantity <= 0) {
 
-		if(is_null($quantity) || $quantity <= 0){
-
-			throw new \Exception("A quantidade não pode ser vazio!");
+			throw new Exception("A quantidade não pode ser vazio!");
 		}
-		if(!is_numeric($quantity)){
+		if (!is_numeric($quantity)) {
 
-			throw new \Exception("A quantidade deve ser um valor numérico");
+			throw new Exception("A quantidade deve ser um valor numérico");
 		}
 
 		$this->quantity = $quantity;
-
 	}
 
-	public function getProduct(){
-
+	public function getProduct()
+	{
 		return $this->product;
 	}
 
-	public function getQuantity(){
-
-		return (int)$this->quantity;
+	public function getQuantity()
+	{
+		return (int) $this->quantity;
 	}
 
-	public function getSubTotal(){
-
+	public function getSubTotal()
+	{
 		return $this->product->preco_venda * $this->quantity;
 	}
-
-
 }

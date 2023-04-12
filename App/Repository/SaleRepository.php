@@ -2,10 +2,11 @@
 
 namespace App\Repository;
 
+use \PDO;
 use App\Model\Sale;
 use Lib\Database\ModelInterface;
 use Lib\Database\Repository;
-use \Lib\Database\Transaction;
+use Lib\Database\Transaction;
 
 class SaleRepository extends Repository
 {
@@ -30,16 +31,23 @@ class SaleRepository extends Repository
 
 		$stmt = $conn->prepare($query);
 
-		$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
-		$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
-		$stmt->bindValue(":limit", $limit, \PDO::PARAM_INT);
-		$stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
+		$stmt->bindValue(":data_inicial", $data_inicial, PDO::PARAM_STR);
+		$stmt->bindValue(":data_final", $data_final, PDO::PARAM_STR);
+		$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+		$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 
 		$stmt->execute();
 
-		Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]));
+		Transaction::log(
+			$this->getQueryLog($query, [
+				'data_inicial' => $data_inicial, 
+				'data_final' => $data_final, 
+				'limit' => (int) $limit,
+				'offset' =>  (int) $offset
+			])
+		);
 
-		return $stmt->fetchAll(\PDO::FETCH_CLASS, get_class($this->model));
+		return $stmt->fetchAll(PDO::FETCH_CLASS, get_class($this->model));
 	}
 
 	public function findByDateCount($data_inicial, $data_final)
@@ -54,19 +62,20 @@ class SaleRepository extends Repository
 
 		$stmt = $conn->prepare($query);
 
-		$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
-		$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
+		$stmt->bindValue(":data_inicial", $data_inicial, PDO::PARAM_STR);
+		$stmt->bindValue(":data_final", $data_final, PDO::PARAM_STR);
 
 		$stmt->execute();
 
-		Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]));
+		Transaction::log(
+			$this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final])
+		);
 
-		return $stmt->fetch(\PDO::FETCH_ASSOC)['total_results_period'] ?? null;
+		return $stmt->fetch(PDO::FETCH_ASSOC)['total_results_period'] ?? null;
 	}
 
 	public function getValorTotalByDate($data_inicial, $data_final)
 	{
-		
 		$conn = Transaction::get();
 
 		$query =
@@ -77,14 +86,16 @@ class SaleRepository extends Repository
 
 		$stmt = $conn->prepare($query);
 
-		$stmt->bindValue(":data_inicial", $data_inicial, \PDO::PARAM_STR);
-		$stmt->bindValue(":data_final", $data_final, \PDO::PARAM_STR);
+		$stmt->bindValue(":data_inicial", $data_inicial, PDO::PARAM_STR);
+		$stmt->bindValue(":data_final", $data_final, PDO::PARAM_STR);
 
 		$stmt->execute();
 
-		Transaction::log($this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final]));
+		Transaction::log(
+			$this->getQueryLog($query, ['data_inicial' => $data_inicial, 'data_final' => $data_final])
+		);
 
-		return $stmt->fetch(\PDO::FETCH_ASSOC)['valor_total_periodo'] ?? null;
+		return $stmt->fetch(PDO::FETCH_ASSOC)['valor_total_periodo'] ?? null;
 	}
 
 	public function store(ModelInterface $model)
@@ -95,10 +106,10 @@ class SaleRepository extends Repository
 	private function save(Sale $model)
 	{
 		parent::store($model);
-		foreach ( $this->model->getItems() as $item ) {
-			$itemRepository = new ItemSaleRepository( $item );
+		foreach ($this->model->getItems() as $item) {
+			$itemRepository = new ItemSaleRepository($item);
 			$item->id_venda = $this->model->id;
-			$itemRepository->store( $item );
+			$itemRepository->store($item);
 		}
 
 		return true;

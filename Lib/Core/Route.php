@@ -2,60 +2,61 @@
 
 namespace Lib\Core;
 
-use \Lib\Core\Request;
+use \Exception;
+use Lib\Core\Request;
 
-class Route{
-	
+class Route
+{
 	private $request;
 	private $separator;
 	private $routes;
 
-	public function __construct( Request $request, $separator){
-
+	public function __construct(Request $request, $separator)
+	{
 		$this->request = $request;
 		$this->separator = $separator;
 	}
 	
-	public function request(){
-
+	public function request()
+	{
 		return $this->request;
 	}
 
-	public function get($route, $callable){
+	public function get($route, $callable)
+	{
 		$method = "GET";
 		$this->addRoute($method, $route, $callable);
 	}
 
-	public function post($route, $callable){
-
+	public function post($route, $callable)
+	{
 		$method = "POST";
 		$this->addRoute($method, $route, $callable);
 	}
 
-	public function put($route, $callable){
-
+	public function put($route, $callable)
+	{
 		$method = "POST";
 		$this->addRoute($method, $route, $callable);
 	}
 	
-	public function delete($route, $callable){
-
+	public function delete($route, $callable)
+	{
 		$method = "GET";
 		$this->addRoute($method, $route, $callable);
 	}
 
-	public function getRoutes(){
-
+	public function getRoutes()
+	{
 		return $this->routes;
 	}
 
-	private function addRoute($method, $route, $function){
-
-		if($function instanceof \Closure){
+	private function addRoute($method, $route, $function)
+	{
+		if ($function instanceof \Closure) {
 
 			$this->routes[$method][$route]= ['function' => $function]; 
-		}
-		else{
+		} else {
 
 			$separatorLen = strlen($this->separator);
 
@@ -66,69 +67,68 @@ class Route{
 		}
 	}
 
-	public function dispatch(){
-
-		try{
+	public function dispatch()
+	{
+		try {
 
 			$method = $this->request->httpMethod();
 
-			if(empty($this->routes[$method])){
+			if (empty($this->routes[$method])) {
 
-				throw new \Exception('Not Implemented!', 501);	
+				throw new Exception('Not Implemented!', 501);	
 			}
 	
-			if(empty($this->routeExists($method)) ){
+			if (empty($this->routeExists($method))) {
 
-				throw new \Exception('Page not Found!', 404);	
+				throw new Exception('Page not Found!', 404);	
 			}
 
 			$route = $this->routeExists($method);
 
 			$function = $this->routes[$method][$route]['function'];
 
-			if($function instanceof \Closure){
+			if ($function instanceof \Closure) {
 
 				return call_user_func($function, $this->request);
 			}
 		
 			$controller = $this->routes[$method][$route]['controller'];
 
-			if(!class_exists($controller)){
+			if (!class_exists($controller)) {
 
-				throw new \Exception("Page ' {$controller} ' not Found", 404);
+				throw new Exception("Page ' {$controller} ' not Found", 404);
 			}
 
 			$object = new $controller($this->request);
 
-			if(!method_exists($object, $function)){
+			if (!method_exists($object, $function)) {
 
-				throw new \Exception("' {$controller}{$this->separator}{$function} ' not Found", 404);
+				throw new Exception("' {$controller}{$this->separator}{$function} ' not Found", 404);
 			}
 		
 			return call_user_func([$object, $function]);
-		}
-		catch (\Exception $e){
+		} catch (Exception $e) {
 
 			return $e->getMessage()."-".$e->getFile()."-".$e->getLine();
 		}
 	}
 
-	private function routeExists($method){
-
+	private function routeExists($method)
+	{
 		$uri = $this->request->uri();
 		$explodeUri = explode("/", $uri);
 		$countUri = count($explodeUri);
 
-		foreach($this->routes[$method] as $route => $value){
+		foreach ($this->routes[$method] as $route => $value) {
 
 			$explodeRoute = explode("/", $route);
 			$countRoute = count($explodeRoute);
 
-			if($countUri == $countRoute){
+			if ($countUri == $countRoute) {
 
-				for($i = 0; $i < $countUri; $i++){
+				for ($i = 0; $i < $countUri; $i++) {
 
-					if(strpos($explodeRoute[$i], "{") !== false ){
+					if (strpos($explodeRoute[$i], "{") !== false ) {
 
 						$param = substr(strstr($explodeRoute[$i], "}", true), 1);
 						$value = $explodeUri[$i];
@@ -141,7 +141,7 @@ class Route{
 
 				$routeImplode = implode("/", $explodeRoute);
 
-				if($routeImplode == $uri){
+				if ($routeImplode == $uri) {
 
 					return $route;
 				}
@@ -150,5 +150,4 @@ class Route{
 
 		return null;
 	}
-
 }

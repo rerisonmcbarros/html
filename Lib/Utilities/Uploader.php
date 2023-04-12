@@ -2,6 +2,8 @@
 
 namespace Lib\Utilities;
 
+use \Exception;
+
 class Uploader
 {
 	private $data;
@@ -67,14 +69,14 @@ class Uploader
 	{
 		if ($file['error'] == 1) {
 
-			throw new \Exception("Erro! o arquivo excedeu o limite de 2MB");
+			throw new Exception("Erro! o arquivo excedeu o limite de 2MB");
 		}
 
 		if (!empty($this->allowedTypes)) {
 
 			if (!in_array($file['type'], $this->allowedTypes)) {
 
-				throw new \Exception("Tipo de arquivo não permitido!");
+				throw new Exception("Tipo de arquivo não permitido!");
 			}
 		}
 	}

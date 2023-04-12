@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use \PDO;
 use App\Model\Product;
 use Lib\Database\Repository;
 use Lib\Database\Transaction;
@@ -13,25 +14,27 @@ class ProductRepository extends Repository
 		parent::__construct(new Product(), 'produto');
 	}
 
-	public function findByCodigo( string $codigo, string $columns = '*' )
+	public function findByCodigo(string $codigo, string $columns = '*')
 	{	
 		$conn = Transaction::get();
 
 		$query = "SELECT {$columns} FROM {$this->getEntity()} WHERE codigo = :codigo";
 		$stmt = $conn->prepare( $query );
-		$stmt->bindValue( ":codigo", $codigo, \PDO::PARAM_STR );
+		$stmt->bindValue(":codigo", $codigo, PDO::PARAM_STR);
 		$stmt->execute();
 
-		Transaction::log( $this->getQueryLog( $query, ['codigo'=>$codigo] ) );
+		Transaction::log(
+			$this->getQueryLog($query, ['codigo'=>$codigo])
+		);
 
-		return $stmt->fetchObject( get_class( $this->model ) );	
+		return $stmt->fetchObject(get_class($this->model));	
 	}
 
-	public function findByCategoria( string $nome, $limit = null, $offset = 0 )
+	public function findByCategoria(string $nome, $limit = null, $offset = 0)
 	{
-		if( $limit == null )
-		{
-			$limit = $this->findByCategoriaCount( $nome );
+		if ($limit == null) {
+
+			$limit = $this->findByCategoriaCount($nome);
 		}
 		$conn = Transaction::get();
 
@@ -48,36 +51,38 @@ class ProductRepository extends Repository
 		ON produto.id_categoria = categoria.id WHERE categoria.nome 
 		LIKE CONCAT('%',:nome, '%') LIMIT :limit OFFSET :offset";
 
-		$stmt = $conn->prepare( $query );
+		$stmt = $conn->prepare($query);
 
-		$stmt->bindValue( ":nome", $nome, \PDO::PARAM_STR );
-		$stmt->bindValue( ":limit", $limit, \PDO::PARAM_INT );
-		$stmt->bindValue( ":offset", $offset, \PDO::PARAM_INT );
+		$stmt->bindValue(":nome", $nome, PDO::PARAM_STR);
+		$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+		$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 
 		$stmt->execute();
 
-		Transaction::log( $this->getQueryLog( $query, ['nome'=> $nome] ) );
+		Transaction::log( 
+			$this->getQueryLog($query, ['nome' => $nome, 'limit' => (int) $limit, 'offset' => (int) $offset]) 
+		);
 
-		return $stmt->fetchAll( \PDO::FETCH_CLASS , get_class( $this->model ) );
+		return $stmt->fetchAll(PDO::FETCH_CLASS , get_class($this->model));
 	}	
 
-	public function findByCategoriaCount( string $nome ) 
+	public function findByCategoriaCount(string $nome) 
 	{
 		$conn = Transaction::get();
 
 		$query = "SELECT count(categoria.nome) as count FROM {$this->getEntity()} INNER JOIN categoria 
 		ON produto.id_categoria = categoria.id WHERE categoria.nome LIKE CONCAT('%',:nome, '%') ";
 		
-		$stmt = $conn->prepare( $query );
-		$stmt->bindValue( ":nome", $nome, \PDO::PARAM_STR );
+		$stmt = $conn->prepare($query);
+		$stmt->bindValue(":nome", $nome, PDO::PARAM_STR);
 		$stmt->execute();
 
-		Transaction::log( $this->getQueryLog( $query, ['nome'=> $nome] ) );
+		Transaction::log($this->getQueryLog($query, ['nome'=> $nome]));
 
-		return $stmt->fetch( \PDO::FETCH_ASSOC )['count'] ?? null;
+		return $stmt->fetch(PDO::FETCH_ASSOC)['count'] ?? null;
 	}
 
-	public function getProdutoCategoria( $limit = null, $offset = 0 )
+	public function getProdutoCategoria($limit = null, $offset = 0)
 	{
 		if($limit == null)
 		{
@@ -96,13 +101,15 @@ class ProductRepository extends Repository
 		FROM {$this->getEntity()} INNER JOIN categoria 
 		ON produto.id_categoria = categoria.id ORDER BY produto.id LIMIT :limit OFFSET :offset";
 
-		$stmt = $conn->prepare( $query );
-		$stmt->bindValue( ":limit", $limit, \PDO::PARAM_INT );
-		$stmt->bindValue( ":offset", $offset, \PDO::PARAM_INT );
+		$stmt = $conn->prepare($query);
+		$stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+		$stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 		$stmt->execute();
 
-		Transaction::log( $query );
+		Transaction::log(
+			$this->getQueryLog($query, ['limit' => $limit, 'offset' => $offset])
+		);
 
-		return $stmt->fetchAll( \PDO::FETCH_CLASS , get_class( $this->model ) );
+		return $stmt->fetchAll(PDO::FETCH_CLASS , get_class($this->model));
 	}
 }
