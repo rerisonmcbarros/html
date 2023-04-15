@@ -50,8 +50,8 @@ class ProductController extends Controller
 		echo $engine->render(
 			"produto-list", 
 			[
+				'title'    => "Penedo | Lista de Produtos",
 				'links'    => ($paginator->links() ?? null),
-				'title'    => "Listagem de Produtos",
 				'products' => $products,
 				'message'  => ($message ?? '')
 			]
@@ -88,7 +88,8 @@ class ProductController extends Controller
 
 		echo $engine->render(
 			"produto-form", 
-			[
+			[	
+				'title' => (!empty($product)) ? 'Penedo | Editar Produto' : 'Penedo | Cadastrar Produto',
 				'categories' => $categories,
 				'product' => ($product ?? null),
 				'message' => ($message ?? '')
@@ -156,7 +157,8 @@ class ProductController extends Controller
 
 		echo $engine->render(
 			"produto-list", 
-			[
+			[	
+				'title' => 'Penedo | Lista de Produtos',
 				'links'   => $paginator->links() ?? null,
 				'products' => ($products ?? []),
 				'message' => ($message ?? '')	
@@ -234,7 +236,8 @@ class ProductController extends Controller
 
 		echo $engine->render(
 			"produto-form", 
-			[
+			[	
+				'title' => 'Penedo | Cadastrar Produto',
 				'categories' => $categories,
 				'message' => ($message ?? '')
 			]
@@ -289,7 +292,8 @@ class ProductController extends Controller
 
 		echo $engine->render(
 			"produto-form", 
-			[
+			[	
+				'title' => 'Penedo | Editar Produto',
 				'categories' => $categories,
 				'product' => $product,
 				'message' => ($message ?? '')
@@ -343,7 +347,8 @@ class ProductController extends Controller
 
 		echo $engine->render( 
 			"produto-list", 
-			[
+			[	
+				'title' => 'Penedo | Lista de Produtos por Período',
 				'links'  => isset($paginator) ? $paginator->links() : null,
 				'products' => $products,
 				'message' => ($message ?? '')	
