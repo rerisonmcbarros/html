@@ -4,9 +4,12 @@ namespace App\Repository;
 
 use \PDO;
 use App\Model\Sale;
-use Lib\Database\ModelInterface;
 use Lib\Database\Repository;
 use Lib\Database\Transaction;
+use Lib\Database\ModelInterface;
+use App\Repository\ProductRepository;
+use App\Repository\ItemSaleRepository;
+use Exception;
 
 class SaleRepository extends Repository
 {
@@ -100,18 +103,44 @@ class SaleRepository extends Repository
 
 	public function store(ModelInterface $model)
 	{
-		return $this->save($model);
-	}
+		if (!($model instanceof Sale)) {
+			throw new Exception('The model must be an instance of Sale');
+		}
 
-	private function save(Sale $model)
-	{
-		parent::store($model);
+		$conn = Transaction::get();
+
+		$this->model = $model;
+		$this->model->id = $this->getLastId() + 1;
+		$columns = implode(", ", array_keys($this->getData()));
+		$values = ":".implode(", :", array_keys($this->getData()));
+		$query = "INSERT INTO {$this->getEntity()} ({$columns}) VALUES ({$values})";
+		
+		$stmt = $conn->prepare($query);
+		
+		foreach ($this->getData()  as $key => $value) {
+
+			$type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;  	
+			$stmt->bindValue(":{$key}", $value, $type);
+		}
+
+		Transaction::log( 
+			$this->getQueryLog($query, $this->getData()) 
+		);
+
+		$stmt->execute();
+	
 		foreach ($this->model->getItems() as $item) {
 			$itemRepository = new ItemSaleRepository($item);
 			$item->id_venda = $this->model->id;
 			$itemRepository->store($item);
+
+			$productRepository = new ProductRepository();
+			$product = $productRepository->find($item->id_produto);
+			$product->reduceStorage($item->quantidade);
+			$productRepository->store($product);
 		}
 
 		return true;
 	}
+
 }
