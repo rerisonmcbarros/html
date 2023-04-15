@@ -40,6 +40,7 @@ class CategoryController extends Controller
 		echo $engine->render(
 			"categoria-list", 
 			[
+				'title' => 'Penedo | Lista de Categorias',
 				'links'    => ($paginator->links() ?? null),
 				'categories' => $categories,
 				'message' => ($message ?? '')	
@@ -74,7 +75,8 @@ class CategoryController extends Controller
 
 		echo $engine->render(
 			"categoria-form", 
-			[
+			[	
+				'title' => (empty($category)) ? 'Penedo | Cadastrar Categoria' : 'Penedo | Editar Categoria',
 				'category' => ($category ?? null),
 				'message' => ($message ?? '')
 			]
@@ -119,6 +121,7 @@ class CategoryController extends Controller
 		echo $engine->render(
 			"categoria-form", 
 			[
+				'title' => 'Penedo | Editar Categoria',
 				'category' => $category,
 				'message' => ($message ?? '')
 			]
@@ -172,6 +175,7 @@ class CategoryController extends Controller
 		echo $engine->render(
 			"categoria-list", 
 			[
+				'title' => 'Penedo | Lista de Categorias',
 				'links'  => ($paginator->links() ?? null),
 				'categories' => ($categories ?? []),
 				'message' => ($message ?? '')	
@@ -219,6 +223,7 @@ class CategoryController extends Controller
 		echo $engine->render(
 			"categoria-form", 
 			[
+				'title' => 'Penedo | Cadastrar Categoria',
 				'message' => ($message ?? '')
 			]
 		);	
