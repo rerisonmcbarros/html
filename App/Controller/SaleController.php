@@ -221,13 +221,6 @@ class SaleController extends Controller
 
 			$saleRepository = new SaleRepository();
 			$saleRepository->store($sale);
-
-			foreach ($sale->getItems() as $item) {
-				$productRepository = new ProductRepository();
-				$product = $productRepository->find($item->id_produto);
-				$product->reduceStorage($item->quantidade);
-				$productRepository->store($product);
-			}
 			
 			$message = $this->message->success("Venda registrada com sucesso!");
 
