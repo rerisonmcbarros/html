@@ -39,6 +39,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-cart", 
 			[
+				'title' => 'Penedo | Carrinho de Compras',
 				'cart' => ($cart ?? []),
 				'message' => ($message ?? '')	
 			]
@@ -92,6 +93,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-cart", 
 			[
+				'title' => 'Penedo | Carrinho de Compras',
 				'cart' => ($cart ?? []),
 				'message' => ($message ?? '')	
 			]
@@ -124,6 +126,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-cart", 
 			[
+				'title' => 'Penedo | Carrinho de Compras',
 				'cart' => ($cart ?? []),
 				'message' => ($message ?? '')	
 			]
@@ -160,6 +163,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-cart",
 			[
+				'title' => 'Penedo | Carrinho de Compras',
 				'cart' => ($cart ?? []),
 				'message' => ($message ?? '')	
 			]
@@ -188,6 +192,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-register", 
 			[
+				'title' => 'Penedo | Registrar Venda',
 				'cart' => ($cart ?? []),
 				'message' => ($message ?? '')	
 			]
@@ -239,6 +244,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-register", 
 			[
+				'title' => 'Penedo | Regitrar Venda',
 				'cart' => ($cart ?? []),
 				'message' => ($message ?? '')	
 			]
@@ -272,6 +278,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-list", 
 			[
+				'title' => 'Penedo | Lista de Vendas',
 				'links' => ($paginator->links() ?? null),
 				'valorPeriodo' => null,
 				'sales' => ($sales ?? []),
@@ -317,7 +324,6 @@ class SaleController extends Controller
 
 				throw new Exception("Nenhuma venda encontrada para o período informado!");
 			}
-			
 				
 			$message = $this->message->success(
 				"Vendas encontradas no período de ".date("d/m/Y",strtotime($get['data_inicial']) )." à ".date("d/m/Y",strtotime($get['data_final']) )
@@ -336,6 +342,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-list", 
 			[
+				'title' => 'Penedo | Lista de Vendas por Período',
 				'links' => ($paginator->links() ?? null),
 				'valorPeriodo' => ($valorPeriodo ?? null),
 				'sales' => ($sales ?? []),
@@ -380,6 +387,7 @@ class SaleController extends Controller
 		echo $engine->render(
 			"venda-items-list", 
 			[
+				'title' => 'Penedo | Detalhes da Venda',
 				'totalValue' => ($totalValue ?? null),
 				'sale' => ($sale ?? []),
 				'itemsSale' => ($itemsSale ?? []),
