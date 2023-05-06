@@ -11,6 +11,7 @@ class Engine
 	private $extension;
 	private $layout;
 	private $data;
+	private $replaces;
 	private $section;
 	private $currentSection;
 
@@ -21,6 +22,7 @@ class Engine
 		$this->filePath = $filePath;
 		$this->extension = $extension;
 		$this->dependency = new Macros();
+		$this->replaces = [];
 	}
 
 	public function __call($name, $value)
@@ -58,8 +60,9 @@ class Engine
 		ob_end_clean();
 	}
 
-	public function render(string $filename, $data = [])
+	public function render(string $filename, array $data = [], array $replaces = [])
 	{
+		$this->replaces = $replaces;
 		$file = $this->filePath.$filename.$this->extension;
 
 		if (!empty($data) && is_array($data)) {
@@ -90,9 +93,16 @@ class Engine
 			
 			$data = array_merge($this->data, $data);
 			
-			return $this->render($layout,$data);
+			return $this->render($layout,$data, $replaces);
 		}
-		
+
+		if (!empty($this->replaces)) {
+
+			foreach ($this->replaces as $replace => $value) {
+				$content = str_replace("{{{$replace}}}", $value, $content);
+			}
+		}
+
 		return $content;
 	}
 }
