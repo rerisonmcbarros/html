@@ -32,8 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
 
-        let dataSaleQuantityChart = {{quantity-chart}};
-        let dataSaleTotalValueChart ={{value-chart}};
+        let dataSaleQuantityChart = {{quantity_chart}};
+        let dataSaleTotalValueChart ={{value_chart}};
         
         function getChartSaleQuantity() {
             
