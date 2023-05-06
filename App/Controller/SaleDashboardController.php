@@ -53,8 +53,6 @@ class SaleDashboardController extends Controller
                 'labels' => $labels,
                 'total_value_month' => $data
             ]);
-
-            echo "<pre>", var_dump($dataSaleQuantityChart), "</pre>";
         }	
         
         $engine = new Engine(__DIR__."/../../App/public/html/");
@@ -67,8 +65,8 @@ class SaleDashboardController extends Controller
                 'years' => ($years ?? [])
             ],
             [
-                'quantity-chart' => $dataSaleQuantityChart,
-                'value-chart' => $dataSaleValueChart
+                'quantity_chart' => $dataSaleQuantityChart,
+                'value_chart' => $dataSaleValueChart
             ]
         );
     }
