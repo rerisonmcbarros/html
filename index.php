@@ -1,6 +1,5 @@
 <?php 
 
-
 require_once __DIR__.'/autoload.php';
 
 use \Lib\Core\Request;
@@ -69,5 +68,9 @@ $route->get("/venda/list/period", "\App\Controller\SaleController::findByDate");
 $route->get("/venda/{id}/details", "\App\Controller\SaleController::getSaleDetails");
 
 //echo "<pre>",var_dump($route->getRoutes()),"</pre>";
+
+//ROTAS DE DASHBOARD DE VENDAS
+
+$route->get("/venda/dashboard", "\App\Controller\SaleDashboardController::index");
 
 echo $route->dispatch();
