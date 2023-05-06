@@ -68,10 +68,10 @@
 				<li class="nav-item ps-3"><a class="nav-link text-white ps-0 m-0 text-nowrap" title="Produtos" href="/Penedo/produto/list"><i class="bi bi-box2"></i>Produtos</a></li>
 				<li class="nav-item ps-3"><a class="nav-link text-white ps-0 m-0 text-nowrap" title="Vendas" href="/Penedo/venda/list"><i class="bi bi-card-checklist"></i>Vendas</a></li>
 				<li class="nav-item ps-3"><a class="nav-link text-white ps-0 m-0 text-nowrap" title="Registrar Venda" href="/Penedo/venda"><i class="bi bi-bag"></i>Registrar Venda</a></li>
+				<li class="nav-item ps-3"><a class="nav-link text-white ps-0 m-0 text-nowrap" title="Painel de Vendas" href="/Penedo/venda/dashboard"><i class="bi bi-bar-chart-line"></i>Painel de Vendas</a></li>
 			</ul>
 		</div>
 	</header>
-
 
 	<?= $this->section('content'); ?>
 
