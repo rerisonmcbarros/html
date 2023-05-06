@@ -9,7 +9,7 @@ use Lib\Database\Transaction;
 use Lib\Database\ModelInterface;
 use App\Repository\ProductRepository;
 use App\Repository\ItemSaleRepository;
-use Exception;
+use \Exception;
 
 class SaleRepository extends Repository
 {
@@ -137,10 +137,62 @@ class SaleRepository extends Repository
 			$productRepository = new ProductRepository();
 			$product = $productRepository->find($item->id_produto);
 			$product->reduceStorage($item->quantidade);
-			$productRepository->store($product);
+			$result = $productRepository->store($product);
 		}
 
-		return true;
+		return $result;
 	}
 
+	public function getSaleYears()
+	{
+		$conn = Transaction::get();
+
+		$query = "SELECT year(data_venda) as `year` FROM venda GROUP BY year(data_venda)";
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+
+		Transaction::log($query);
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function getTotalValueGroupByMonth(?int $year = null)
+	{
+		if (empty($year)) {
+			$year = date('Y');
+		}
+
+		$conn = Transaction::get();
+
+		$query = "SELECT month(data_venda) as `month`, sum(valor_total) as `total_value_month`
+		FROM venda WHERE month(data_venda) >= 1 AND month(data_venda) <= 12  AND year(data_venda) = :year GROUP BY month(data_venda)";
+
+		$stmt = $conn->prepare($query);
+		$stmt->bindValue(':year', $year, PDO::PARAM_INT);
+		$stmt->execute();
+
+		Transaction::log($this->getQueryLog($query, ['year' => $year]));
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function getQuantityGroupByMonth(?int $year = null)
+	{
+		if (empty($year)) {
+			$year = date('Y');
+		}
+	
+		$conn = Transaction::get();
+
+		$query = "SELECT month(data_venda) as `month`, count(*) as `sale_quantity`
+		FROM venda WHERE month(data_venda) >= 1  AND year(data_venda) = :year GROUP BY month(data_venda)";
+
+		$stmt = $conn->prepare($query);
+		$stmt->bindValue(':year', $year, PDO::PARAM_INT);
+		$stmt->execute();
+
+		Transaction::log($this->getQueryLog($query, ['year' => $year]));
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
